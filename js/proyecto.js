@@ -62,3 +62,22 @@ function hideAddTeam(){
     document.getElementById("contain").style.visibility = "hidden";
   });
 }
+
+let loadTeams = document.getElementById("cargar");
+loadTeams.addEventListener("click", tabla);
+
+function tabla(){
+  let equipos = localStorage.getItem("listaEquipos");
+  alert(equipos);
+  $(".tabla").append(`
+                      <tr>
+                        <td>${equipos[1].nombre}</td>
+                        <td>${equipos[1].partidosJugados()}</td>
+                        <td>${equipos[1].partidosGanados}</td>
+                        <td>${equipos[1].partidosEmpatados}</td>
+                        <td>${equipos[1].partidosPerdidos}</td>
+                        <td>${equipos[1].puntos()}</td>
+                      </tr>
+                        `);
+}
+
