@@ -18,18 +18,23 @@
             </ul>
         </div>
     </div>
-    <div class="contain">
-        <table class="tabla">
-            <tr>
+    <div class="contain clasificacion">
+        <div class="tituloTabla">Clasificacion Premier League 2021/22</div>
+        <table id="tabla">
+            <tr class="cabeceraTabla">
                 <td>Club</td>
-                <td>PJ</td>
+                <td id="PJ">PJ</a></td>
                 <td>G</td>
                 <td>E</td>
                 <td>P</td>
                 <td>Pts</td>
             </tr>
+            <div id="datosTabla"></div>
         </table>
-        <button id="cargar">cargar equipos</button>
+        <div class="mid-width">
+            <!-- <button type="button" id="reload">reload</button> -->
+            <button type="button" id="btnClear2">Borrar todo</button>
+        </div>
     </div>
     <footer>
         <div class="footer-content">
@@ -46,6 +51,7 @@
 
     </footer>      
 
+<script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/proyecto.js"></script>
 </body>
 </html>

@@ -1,7 +1,19 @@
+Storage.prototype.setObj = function(key,obj){
+  return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getObj = function(key){
+  return JSON.parse(this.getItem(key))
+}
 
-let ingresar = "si";
-const todosEquipos = new Array();
+
+
 let totalEquipos = 0;
+if(localStorage.getObj("listaEquipos") === null){
+  var todosEquipos = [];
+}
+else{
+  var todosEquipos = localStorage.getObj("listaEquipos");
+}
 
 class Equipo {
   constructor(nombre,pais,ciudad,estadio,partidosGanados,partidosEmpatados,partidosPerdidos) {
@@ -13,24 +25,24 @@ class Equipo {
     this.partidosGanados = parseInt(partidosGanados);
     this.partidosEmpatados = parseInt(partidosEmpatados);
     this.partidosPerdidos = parseInt(partidosPerdidos);
-    
-  }
-  puntos() {
-    return (this.partidosGanados * 3 +this.partidosEmpatados * 1 + this.partidosPerdidos * 0);
-  }
-  partidosJugados(){
-    return(this.partidosGanados+this.partidosEmpatados+this.partidosPerdidos);
+    this.partidosJugados = (this.partidosGanados + this.partidosEmpatados + this.partidosPerdidos);
+    this.puntos = (this.partidosGanados*3 + this.partidosEmpatados*1 + this.partidosPerdidos*0)
   }
 }
 
+
 let addForm = document.getElementById("agregarEquipo");
-addForm.addEventListener("submit", crearEquipo);
+if (addForm){
+  addForm.addEventListener("submit", crearEquipo);
+}
+
 
 let clrTeams = document.getElementById("btnClear");
-clrTeams.addEventListener("click", clearTeams);
+if (clrTeams){
+  clrTeams.addEventListener("click", clearTeams);
+}
 
 function crearEquipo(e){
-  console.log("pulsaste boton");
   e.preventDefault();
   let nuevoEquipo = new Equipo(
     document.getElementById("nombre").value,
@@ -41,19 +53,40 @@ function crearEquipo(e){
     document.getElementById("empatados").value,
     document.getElementById("perdidos").value
   );
-  addForm.reset();
+  // addForm.reset();
   todosEquipos.push(nuevoEquipo);
-  localStorage.setItem("listaEquipos", todosEquipos);
-  let mensaje = document.getElementById("mensaje");
-  mensaje.innerHTML = "&#9989; Se agrego correctamente el equipo"
+  clasificar();
+  localStorage.setObj("listaEquipos", todosEquipos);
+  $("#confirmation").html(`<p>&#9989; Se agrego correctamente el equipo</p>`);
   setTimeout(function() {
-    mensaje.innerHTML = ""
+    confirmation.innerHTML = ""
     }, 5000);
 }
+
+
+
+function clasificar(){
+  todosEquipos.sort(function(a,b){
+    if (a.puntos>b.puntos){
+      return -1;
+    }
+    if (a.puntos<b.puntos){
+      return 1;
+    }
+    else{
+      if(a.partidosGanados>b.partidosGanados){ //en caso de igualdad de puntos, situa por encima al que mas partidos ganados tenga
+        return -1;
+      }
+      else return 1;
+    };
+  })
+}
+
 
 function clearTeams(){
   if (confirm("¿Esta seguro de borrar todos los equipos?")){
     localStorage.clear();
+    $("#mensaje").empty();
   }
 }
 
@@ -63,21 +96,49 @@ function hideAddTeam(){
   });
 }
 
-let loadTeams = document.getElementById("cargar");
-loadTeams.addEventListener("click", tabla);
+console.log(todosEquipos[0].partidosJugados);
 
-function tabla(){
-  let equipos = localStorage.getItem("listaEquipos");
-  alert(equipos);
-  $(".tabla").append(`
-                      <tr>
-                        <td>${equipos[1].nombre}</td>
-                        <td>${equipos[1].partidosJugados()}</td>
-                        <td>${equipos[1].partidosGanados}</td>
-                        <td>${equipos[1].partidosEmpatados}</td>
-                        <td>${equipos[1].partidosPerdidos}</td>
-                        <td>${equipos[1].puntos()}</td>
-                      </tr>
-                        `);
+
+$(" #reload ").click(sortPJ);
+
+function sortPJ(){
+  todosEquipos.sort(function(a,b){
+    if (a.partidosJugados>b.partidosJugados){
+      return -1;
+    }
+    if (a.partidosJugados<b.partidosJugados){
+      return 1;
+    }
+    else{
+      if(a.partidosGanados>b.partidosGanados){ //en caso de igualdad de puntos, situa por encima al que mas partidos ganados tenga
+        return -1;
+      }
+      else return 1;
+    };
+    });
+    console.log(todosEquipos[0].partidosJugados);
 }
 
+
+window.onload = mostrarTabla;
+
+function mostrarTabla(){
+  for (equipo of todosEquipos){
+    $("#tabla").append(`
+                        <tr>
+                          <td>${equipo.nombre}</td>
+                          <td>${equipo.partidosJugados}</td>
+                          <td>${equipo.partidosGanados}</td>
+                          <td>${equipo.partidosEmpatados}</td>
+                          <td>${equipo.partidosPerdidos}</td>
+                          <td>${equipo.puntos}</td>
+                        </tr>
+                          `);
+  }
+}
+
+
+function ordenTablaPJ(todosEquipos){
+  let ordenNuevo = todosEquipos.sort((a,b) => b.partidosJugados - a.partidosJugados);
+  localStorage.setObj("ordenPJ", ordenNuevo);
+}

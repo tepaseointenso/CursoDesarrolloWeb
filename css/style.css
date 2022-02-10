@@ -12,6 +12,7 @@ body{
     background-image: url("../assets/fondo.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
 }
 
 #banner {
@@ -63,6 +64,7 @@ body{
     text-align: center;
     display:inline-block;
     vertical-align:top;
+    height: 50px;
 }
 
 .navigation-bar li {
@@ -72,6 +74,7 @@ body{
     margin-top: 4px;
     margin-bottom: 4px;
     display: inline;
+    width: 100%;
 }
 
 .navigation-bar li a {
@@ -164,7 +167,7 @@ form .partidos{
     grid-gap: 20px;
 }
 
-form .botones{
+.botones{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -277,14 +280,46 @@ display: block;
   color: #27bcda;
 }
 
-#mensaje{
+#mensaje, #confirmation{
     margin-top: 5%;
     font-weight: 500;
     text-align: center;
     font-size: 2rem;
 }
 
-.tabla{
+#tabla{
     color: #fff;
+    text-align: center;
+    margin: auto;
     
+}
+
+.clasificacion{
+    text-align: center;
+}
+
+td{
+    min-width: 100px;
+}
+
+#tabla a{
+    color: #fff;
+}
+
+.tituloTabla{
+    line-height: 1em;
+    font-weight: 500;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 5%;
+}
+
+.cabeceraTabla{
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+#btnClear2{
+    margin-top: 5%;
+    width: 20%;
 }
