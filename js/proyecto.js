@@ -86,7 +86,10 @@ function clasificar(){
 function clearTeams(){
   if (confirm("¿Esta seguro de borrar todos los equipos?")){
     localStorage.clear();
+    todosEquipos =[];
+    $("#tabla").empty();
     $("#mensaje").empty();
+    mostrarTabla();
   }
 }
 
