@@ -12,7 +12,8 @@ if(localStorage.getObj("listaEquipos") === null){
   var todosEquipos = [];
 }
 else{
-  var todosEquipos = localStorage.getObj("listaEquipos");
+  var listaEquipos = localStorage.getObj("listaEquipos");
+  var todosEquipos = Object.values(listaEquipos);
 }
 
 class Equipo {
@@ -119,13 +120,25 @@ function sortPJ(){
       else return 1;
     };
     });
-    console.log(todosEquipos[0].partidosJugados);
+    localStorage.setObj("listaEquipos",todosEquipos)
+    $("#tabla").html("");
+    mostrarTabla();
 }
 
 
 window.onload = mostrarTabla;
 
 function mostrarTabla(){
+    $("#tabla").append(`
+                        <tr class="cabeceraTabla">
+                        <td>Club</td>
+                        <td id="PJ">PJ</a></td>
+                        <td>G</td>
+                        <td>E</td>
+                        <td>P</td>
+                        <td>Pts</td>
+                    </tr>
+                      `)
   for (equipo of todosEquipos){
     $("#tabla").append(`
                         <tr>

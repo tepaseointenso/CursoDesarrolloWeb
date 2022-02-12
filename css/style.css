@@ -302,7 +302,7 @@ td{
     min-width: 100px;
 }
 
-#tabla a{
+#tabla, #datosTabla{
     color: #fff;
 }
 
@@ -321,5 +321,6 @@ td{
 
 .botonClear{
     margin-top: 5%;
+    margin-bottom: 5%;
     width: 20%;
 }
