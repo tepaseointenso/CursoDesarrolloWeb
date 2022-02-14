@@ -14,7 +14,7 @@
                 <li><a href="equipos.html">Equipos</a></li>
                 <li><a href="clasificacion.html">Clasificacion</a></li>
                 <li><a href="#Noticias">Noticias</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a onclick="scrollFooter();">Contacto</a></li>
             </ul>
         </div>
     </div>
@@ -35,6 +35,7 @@
                     <p>
                         <label for="">Pais</label>
                         <select name="pais" id="pais" required>
+                            <option value="inglaterra">Inglaterra</option>
                             <option value="chile">Chile</option>
                             <option value="argentina">Argentina</option>
                             <option value="peru">Peru</option>
@@ -72,6 +73,9 @@
                             <button type="button" id="clasificacion">Ver Clasificacion</button>
                         </a>
                     </div>
+                    <div class="full-width">
+                            <button type="button" id="baseDatos">Cargar Base de Datos</button>
+                    </div>
                     <div id="confirmation" class="full-width"></div>
                     <div id="mensaje" class="full-width"></div>
                 </form>
@@ -93,7 +97,7 @@
         </div>
 
     </footer>      
-
+<script type="module" src="./js/baseDatos.js"></script>
 <script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/proyecto.js"></script>
 </body>

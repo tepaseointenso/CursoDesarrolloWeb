@@ -221,7 +221,6 @@ outline: 0;
 }
 
 footer{
-    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -323,4 +322,15 @@ td{
     margin-top: 5%;
     margin-bottom: 5%;
     width: 20%;
+}
+.updated{
+    color: #fff;
+    text-align: center;
+    margin: 10px;
+    font-weight: lighter;
+}
+
+.footHome{
+    position: absolute;
+    bottom: 0;
 }
