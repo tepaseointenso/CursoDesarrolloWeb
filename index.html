@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Desafio 2</title>
 </head>
 <body>
     <div class="navigation-bar">
         <div id="navigation-container">
             <img class="logo" src="./assets/logo.png" alt="Logo">
-            <ul>
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="equipos.html">Equipos</a></li>
-                <li><a href="clasificacion.html">Clasificacion</a></li>
-                <li><a href="#Noticias">Noticias</a></li>
-                <li><a onclick="scrollFooter();">Contacto</a></li>
-            </ul>
-        </div>
-    </div>
-    <footer id="footer" class="footHome">
-        <div class="footer-content">
-            <h3>Premier League</h3>
-            <div class="footer-menu">
-                <ul class="f-menu">
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="">Blog</a></li>
+            <div class="textoNavbar">
+                <ul>
+                    <li><a href="./index.html">Inicio</a></li>
+                    <li><a href="equipos.html">Equipos</a></li>
+                    <li><a href="clasificacion.html">Clasificacion</a></li>
+                    <li><a href="#Noticias">Noticias</a></li>
+                    <li><a onclick="scrollFooter();">Contacto</a></li>
                 </ul>
             </div>
         </div>
-
-    </footer>      
-
+    </div>
+    <div class="contain">
+        <div class="mostrarTablaHome fondoTabla">
+            <div class="bannerLateralHome text-center">
+                <h1 class="tituloBanner tituloHome">Bienvenido!</h1>
+                <h2 class="tituloBanner tituloHome">Elige alguna de las opciones</h2>
+            </div>
+            <div class="m-auto">
+                    <a href="equipos.html"><button class="inactivo btnRight">Crear nueva tabla de clasificacion</button></a>
+                    <a href="clasificacion.html"><button class="inactivo btnRight">Ver clasificacion de las ligas</button></a>
+                    <a href="equipos.html"><button class="inactivo btnRight">Agregar equipo a una liga</button></a>
+                    <button class="inactivo btnRight" id="baseDatos">Cargar todas las bases de datos</button>
+                    <button class="inactivo btnRight" id="btnClear">Borrar todas las bases de datos</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="containerFooter">
+            <div class="footerInfo">
+                <h3>Proyecto Desarrollo Web/JavaScript</h3>
+            </div>
+        </div>
+    </footer> 
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/proyecto.js"></script>
 </body>

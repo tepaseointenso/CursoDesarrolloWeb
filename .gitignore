@@ -2,3 +2,5 @@
 /entregaFinal1
 /js/alert.js
 *.rar
+/node_modules
+.vscode
