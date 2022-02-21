@@ -259,6 +259,7 @@ let totalEquipos = 0;
 let laLigaEquipos = [];
 let equiposSerieA = [];
 let equiposBundes = [];
+
 if(localStorage.getObj("listaEquipos") === null){
   var todosEquipos = [];
 }
@@ -338,13 +339,29 @@ function clasificarPts(){
 
 
 function clearTeams(){
-  if (confirm("¿Esta seguro de borrar todos los equipos?")){
-    localStorage.clear();
-    todosEquipos =[];
-    $("#tabla").empty();
-    $("#mensaje").empty();
-    mostrarTabla();
-  }
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "Se borraran todos los equipos",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, borrar todo',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.clear();
+      todosEquipos =[];
+      $("#tabla").empty();
+      $("#mensaje").empty();
+      mostrarTabla();
+      Swal.fire(
+        'Eliminado!',
+        'Todas las bases de datos fueron eliminadas',
+        'success'
+      )
+    }
+  })
 }
 
 function hideAddTeam(){
@@ -596,3 +613,11 @@ $("#bundesligaTab").click(()=>{
   mostrarTabla(equiposBundes)
 });
 
+$(function() {
+  $(".toggle").on("click", function() { 
+    if ($(".item").hasClass("active")) { 
+      $(".item").removeClass("active"); $(this).find("a").html("<i class='fa fa-bars'></i>"); 
+      } 
+      else { $(".item").addClass("active"); $(this).find("a").html("<i class='fa fa-times'></i>"); }
+    }); 
+});
