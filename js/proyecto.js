@@ -343,9 +343,11 @@ function clearTeams(){
     title: '¿Estás seguro?',
     text: "Se borraran todos los equipos",
     icon: 'warning',
+    color: 'white',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    background: '#37003A',
+    confirmButtonColor: '#FF57A8',
+    cancelButtonColor: '#FF57A8',
     confirmButtonText: 'Si, borrar todo',
     cancelButtonText: 'Cancelar'
   }).then((result) => {
@@ -355,10 +357,16 @@ function clearTeams(){
       $("#tabla").empty();
       $("#mensaje").empty();
       mostrarTabla();
-      Swal.fire(
-        'Eliminado!',
-        'Todas las bases de datos fueron eliminadas',
-        'success'
+      Swal.fire({
+        background: '#37003A',
+        color: 'white',
+        confirmButtonColor: '#FF57A8',
+        cancelButtonColor: '#FF57A8',
+        title: 'Eliminado!',
+        text: 'Todas las bases de datos fueron eliminadas',
+        icon: 'success'
+
+      }
       )
     }
   })
@@ -589,14 +597,34 @@ function scrollFooter(){
 $("#baseDatos").click(loadBD);
 
 function loadBD(){
-  confirm("Seguro que quiere borrar y cargar la base de datos?");
-  localStorage.clear();
-  todosEquipos = baseDatos;
-  localStorage.setObj("listaEquipos", todosEquipos);
-  $("#confirmation").html(`<p>&#9989; Base de datos cargada correctamente</p>`);
-  setTimeout(function() {
-    confirmation.innerHTML = ""
-    }, 5000);
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "Se restablecera la base de datos por defecto",
+    icon: 'warning',
+    color: 'white',
+    showCancelButton: true,
+    background: '#37003A',
+    confirmButtonColor: '#FF57A8',
+    cancelButtonColor: '#FF57A8',
+    confirmButtonText: 'Si, restablecer base de datos',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.clear();
+      todosEquipos = baseDatos;
+      localStorage.setObj("listaEquipos", todosEquipos);
+      Swal.fire({
+        background: '#37003A',
+        color: 'white',
+        title: 'Base de datos restablecida!',
+        text: 'La base de datos se ha restablecido correctamente',
+        icon: 'success',
+        confirmButtonText: 'Listo',
+        confirmButtonColor: '#FF57A8'
+      }
+      )
+    }
+  })
 }
 
 

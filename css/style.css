@@ -441,3 +441,8 @@ color: #fff;
 .premier{
     background-image: url('../assets/premier-icon.png') 10px 10px no-repeat;
 }
+
+body.swal2-shown > [aria-hidden="true"] {
+    transition: 0.2s filter;
+    filter: blur(10px);
+  }
