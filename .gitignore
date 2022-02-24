@@ -4,6 +4,3 @@
 *.rar
 /node_modules
 .vscode
-/scss
-/css/estilos.css
-/css/estilos.css.map

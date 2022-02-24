@@ -1,0 +1,27 @@
+@mixin flex-row-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin dimension($ancho, $alto){
+    width: $ancho;
+    height: $alto;
+
+};
+
+.bgMainColor{
+    background-color: map-get($colores , bgColorMain );
+}
+
+@each $k, $v in $font-weights{
+    .font-weight-#{$k}{
+        font-weight: $v;
+    }
+}
+
+@for $i from 1 through 12{
+    .col-#{$i}{
+        width: ((100% /12) * $i)
+    }
+}

@@ -1,0 +1,20 @@
+$font-weights:(
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semi-bold: 600,
+    bold: 700
+
+);
+
+$colores:(
+    bgColorMain: #444,
+    colorMain: #fff
+)
+
+:root{
+    @each $k, $v in $colores {
+        --miColor-#{$k}: #{$v};
+        
+    }
+}
