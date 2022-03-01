@@ -1,20 +1,14 @@
-$font-weights:(
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semi-bold: 600,
-    bold: 700
+$miColor:(
+    primario: #37003A,
+    secundario: #FF57A8
 
 );
 
-$colores:(
-    bgColorMain: #444,
-    colorMain: #fff
-)
 
-:root{
-    @each $k, $v in $colores {
-        --miColor-#{$k}: #{$v};
-        
+@mixin tipos-colores {
+    @each $name, $value in $miColor {
+      &-#{$name} {
+        color: $value;
+      }
     }
-}
+  }

@@ -1,13 +1,18 @@
 fetch("/js/laliga.json")
-    .then(response => response.json())
-    .then(parsed_data => {
-      baseDatosLiga = parsed_data;
-    });
+  .then(response => response.json())
+  .then(parsed_data => {
+    baseDatosLiga = parsed_data;
+  });
 fetch("/js/premier.json")
-    .then(response => response.json())
-    .then(parsed_data => {
-      baseDatosPremier = parsed_data;
-    });
+  .then(response => response.json())
+  .then(parsed_data => {
+    baseDatosPremier = parsed_data;
+  });
+fetch("/js/serieA.json")
+  .then(response => response.json())
+  .then(parsed_data => {
+    baseDatosSerieA = parsed_data;
+});
 
 Storage.prototype.setObj = function(key,obj){
   return this.setItem(key, JSON.stringify(obj))
@@ -77,7 +82,11 @@ class Equipo {
 }
 
 $("#agregarEquipo").submit(crearEquipo);
-$("#btnClear").click(clearTeams);
+$(".btnClear").click(clearTeams);
+$(".btnForm").click(() => {
+  $("#agregarEquipo")[0].reset();
+});
+
 
 function crearEquipo(e){
   e.preventDefault();
@@ -96,7 +105,10 @@ function crearEquipo(e){
   else if ($("#pais").val() == 'inglaterra'){
     liga = 'premierEquipos';
   }
-  addForm.reset();
+  else if ($("#pais").val() == 'italia'){
+    liga = 'serieAequipos';
+  }
+  $("#agregarEquipo")[0].reset();
   totalEquipos++;
   ligaActual = window[liga];
   ligaActual.push(nuevoEquipo);
@@ -123,11 +135,9 @@ function clearTeams(){
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
-      localStorage.clear();
-      premierEquipos =[];
-      laLigaEquipos = [];
-      $("#tabla").empty();
-      $("#mensaje").empty();
+      ligaActual = [];
+      console.log(ligaActual.length);
+      localStorage.removeItem(ligaElegida);
       mostrarTabla(ligaElegida);
       Swal.fire({
         background: '#37003A',
@@ -137,12 +147,14 @@ function clearTeams(){
         title: 'Eliminado!',
         text: 'Todas las bases de datos fueron eliminadas',
         icon: 'success'
-
       }
       )
     }
   })
+
 }
+console.log(typeof(ligaActual));
+console.log(ligaActual.length);
 
 window.onload = mostrarTabla(ligaElegida);
 
@@ -332,6 +344,7 @@ function mostrarTabla(ligaElegida){
   ligaActual = window[ligaElegida];
   if ($(divLigaElegida).ready()){
     if (ligaActual.length === 0){
+      console.log('entrooo');
       $(divLigaElegida).html("");
       $(divLigaElegida).append(`<h2 class="tituloBanner">No existen equipos en la base de datos. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)    
     }
@@ -388,8 +401,10 @@ function loadBD(){
       localStorage.clear();
       laLigaEquipos = baseDatosLiga;
       premierEquipos = baseDatosPremier;
+      serieAequipos = baseDatosSerieA;
       localStorage.setObj("laLigaEquipos", laLigaEquipos);
       localStorage.setObj("premierEquipos", premierEquipos);
+      localStorage.setObj("serieAequipos", serieAequipos);
       Swal.fire({
         background: '#37003A',
         color: 'white',
