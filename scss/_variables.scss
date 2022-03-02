@@ -1,14 +1,15 @@
-$miColor:(
-    primario: #37003A,
-    secundario: #FF57A8
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;400;500;600&display=swap");
 
+$font-primary: 'IBM Plex Sans Thai Looped', sans-serif;
+
+// PALETA DE COLORES
+
+$lista-colores:(
+  primario: #37003A,
+  secundario: #FF57A8
 );
 
-
-@mixin tipos-colores {
-    @each $name, $value in $miColor {
-      &-#{$name} {
-        color: $value;
-      }
-    }
-  }
+$color-primario: #37003A;
+$color-secundario: #FF57A8;
+$white: #fff;
+$black: #000;

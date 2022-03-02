@@ -1,40 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Equipos</title>
-    <link rel="stylesheet" href="./css/estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Equipos</title>
 </head>
 <body>
-    <nav>
-        <img class="logo" src="./assets/logo.png" alt="Logo">
-        <ul class="menu">
-            <li class="item"><a href="index.html">Inicio</a></li>
-            <li class="item"><a href="equipos.html">Equipos</a></li>
-            <li class="item"><a href="clasificacion.html">Clasificacion</a></li>
-            <li class="item"><a onclick="scrollFooter();">Contacto</a></li>
-            <li class="toggle"><a href="#"><i class="fa fa-bars"></i></a></li>
-        </ul>
-    </nav>
+    <div id="forblur">
+    </div>
+    <div class="container-fluid px-0">
+        <div id="background"></div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primario py-0 px-0"> 
+            <a class="navbar-brand" href="index.html"><img src="./assets/logo.png" class="navbarLogo"></a> 
+            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+                <span class="navbar-toggler-icon"></span> 
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"> <a class="nav-link" href="index.html">Inicio</a> </li>
+                    <li class="nav-item activeNav"> <a class="nav-link" href="equipos.html">Equipos</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="clasificacion.html">Clasificacion</a> </li>
+                    <li class="nav-item"> <a class="nav-link" onclick="scrollFooter();">Contacto</a> </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+        <div class="row">
+            <div class="card fondoTabla blanco">
+                <div class="card-header">
+                    <h5 class="card-title-info">Informacion de los Equipos</h5>
+                    <ul class="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
+                        <li class="nav-item-teams inactivo">
+                            <a class="nav-link-teams active" aria-current="true" data-bs-toggle="tab" href="#premier">Premier League</a>
+                        </li>
+                        <li class="nav-item-teams inactivo">
+                            <a class="nav-link-teams" data-bs-toggle="tab" href="#laliga">laLiga</a>
+                        </li>
+                        <li class="nav-item-teams inactivo">
+                            <a class="nav-link-teams" data-bs-toggle="tab" href="#serieA">Serie A</a>
+                        </li>
+                        <li class="nav-item-teams inactivo">
+                            <a class="nav-link-teams" data-bs-toggle="tab" href="#bundesliga">Bundesliga</a>
+                        </li>
+                    </ul>
+                </div>
+                <form class="card-body tab-content">
+                    <div class="tab-pane active" id="premier">
+                        <div class="list-group-premier row"></div>
+                    </div>
+                    <div class="tab-pane" id="laliga">
+                        <div class="list-group-liga row"></div>
+                    </div>
+                    <div class="tab-pane" id="serieA">
+                        <div class="list-group-serieA row"></div>
+                    </div>
+                    <div class="tab-pane" id="bundesliga">
+                        <div class="list-group-bundes row"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
     <div class="container-fluid contain">
-        <div class="row">
-            <div class="contacts col-lg-4 px-0 py-5">
-                <div class="row">
-                    <p class="tituloNew">AÑADIR NUEVO EQUIPO</p>
+        <div class="row fondoTabla">
+            <div class="bannerLateral col-lg-4 px-0 py-5">
+                    <p class="tituloTeams">AÑADIR NUEVO EQUIPO</p>
                     <img class="logoSide" src="./assets/logo.png" alt="Logo">
-                </div>
             </div>
-            <div class="fondoForm col-lg-8 col-md-12 px-0">
-                <form id="agregarEquipo" class="pt-1 my-auto">
+            <div class="fondoForm col-lg-8 col-md-12 px-0 mt-auto mb-auto">
+                <form id="agregarEquipo" >
                     <div class="row m-3">
                         <div class="col-lg-6 col-md-12">
                             <p>
-                            <label for="">Nombre del equipo</label>
+                            <label for="">Logo del equipo (URL de .png)</label>
+                            <input type="text" placeholder="Opcional" id="logoEquipo" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-lg-6 col-md-12">
+                            <p>
+                            <label for="">Nombre del Equipo</label>
                             <input type="text" id="nombre" required>
                             </p>
                         </div>
@@ -42,9 +95,10 @@
                             <p>
                                 <label for="">Pais</label>
                                 <select name="pais" id="pais" required>
-                                    <option value="inglaterra">Inglaterra</option>
-                                    <option value="españa">España</option>
-                                    <option value="italia">Italia</option>
+                                    <option value="inglaterra">Inglaterra (Premier League)</option>
+                                    <option value="españa">España (laLiga)</option>
+                                    <option value="italia">Italia (Serie A)</option>
+                                    <option value="alemania">Alemania (Bundesliga)</option>
                                 </select>
                             </p>
                         </div>
@@ -64,19 +118,19 @@
                         </div>
                     </div>
                     <div class="row m-3">
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <p>
                                 <label for="ganados">Partidos Ganados</label>
                                 <input id="ganados" type="number" onkeypress="return event.charCode >= 48" min="0" step="1" required>
                             </p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <p>
                                 <label for="empatados">Partidos empatados</label>
                                 <input id="empatados" type="number" onkeypress="return event.charCode >= 48" min="0" step="1" required>
                             </p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <p>
                                 <label for="perdidos">Partidos perdidos</label>
                                 <input id="perdidos" type="number" onkeypress="return event.charCode >= 48" min="0" step="1" required>
@@ -100,21 +154,32 @@
                         <div class="full-width">
                             <button type="button" id="baseDatos">Cargar Base de Datos</button>
                         </div>
-                        <div id="confirmation" class="full-width"></div>
-                        <div id="mensaje" class="full-width"></div>
                     </div>
                 </form>
             </div>
         </div>
     </div> 
-    <footer>
-        <div class="containerFooter">
-            <div class="footerInfo">
-                <h3>Proyecto Desarrollo Web/JavaScript</h3>
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <h2 class="footer-heading"><a href="#" class="logo">Proyecto Desarrollo Web/Javascript</a></h2>
+                    <p class="menu">
+                        <a href="#">Inicio</a>
+                        <a href="#">Equipos</a>
+                        <a href="#">Clasificacion</a>
+                        <a href="#">Contacto</a>
+                    </p>
+                    <ul class="ftco-footer-social p-0">
+                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </footer>   
-
+    </footer>
+<script src="https://kit.fontawesome.com/ce792e71aa.js" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="./js/jquery-3.6.0.min.js"></script>

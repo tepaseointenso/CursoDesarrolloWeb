@@ -1,6 +1,7 @@
 [
     {
        "id":1,
+       "logo": "../assets/premierLogos/city.png",
        "nombre":"Manchester City",
        "ciudad":"Manchester",
        "pais":"inglaterra",
@@ -13,6 +14,7 @@
     },
     {
        "id":2,
+       "logo": "../assets/premierLogos/liverpool.png",
        "nombre":"Liverpool",
        "ciudad":"Liverpool",
        "pais":"inglaterra",
@@ -25,6 +27,7 @@
     },
     {
        "id":3,
+       "logo": "../assets/premierLogos/chelsea.png",
        "nombre":"Chelsea",
        "ciudad":"Londres",
        "pais":"inglaterra",
@@ -37,6 +40,7 @@
     },
     {
        "id":4,
+       "logo": "../assets/premierLogos/westham.png",
        "nombre":"West Ham",
        "ciudad":"Londres",
        "pais":"inglaterra",
@@ -49,6 +53,7 @@
     },
     {
        "id":5,
+       "logo": "../assets/premierLogos/united.png",
        "nombre":"Manchester United",
        "ciudad":"Manchester",
        "pais":"inglaterra",
@@ -61,6 +66,7 @@
     },
     {
        "id":6,
+       "logo": "../assets/premierLogos/arsenal.png",
        "nombre":"Arsenal",
        "ciudad":"Londres",
        "pais":"inglaterra",
@@ -73,6 +79,7 @@
     },
     {
        "id":7,
+       "logo": "../assets/premierLogos/wolves.png",
        "nombre":"Wolverhampton",
        "ciudad":"Wolverhampton",
        "pais":"inglaterra",
@@ -85,6 +92,7 @@
     },
     {
        "id":8,
+       "logo": "../assets/premierLogos/tottenham.png",
        "nombre":"Tottenham Hotspur",
        "ciudad":"Tottenham",
        "pais":"inglaterra",
@@ -97,6 +105,7 @@
     },
     {
        "id":9,
+       "logo": "../assets/premierLogos/brighton.png",
        "nombre":"Brighton & Hove Albion",
        "ciudad":"Brighton & Hove",
        "pais":"inglaterra",
@@ -109,6 +118,7 @@
     },
     {
        "id":10,
+       "logo": "../assets/premierLogos/southampton.png",
        "nombre":"Southampton Football Club",
        "ciudad":"Southampton",
        "pais":"inglaterra",
@@ -121,6 +131,7 @@
     },
     {
        "id":11,
+       "logo": "../assets/premierLogos/leicester.png",
        "nombre":"Leicester City",
        "ciudad":"Leicester",
        "pais":"inglaterra",
@@ -133,6 +144,7 @@
     },
     {
        "id":12,
+       "logo": "../assets/premierLogos/aston.png",
        "nombre":"Aston Villa",
        "ciudad":"Birmingham",
        "pais":"inglaterra",
@@ -145,6 +157,7 @@
     },
     {
        "id":13,
+       "logo": "../assets/premierLogos/crystal.png",
        "nombre":"Crystal Palace",
        "ciudad":"Londres",
        "pais":"inglaterra",
@@ -157,6 +170,7 @@
     },
     {
        "id":14,
+       "logo": "../assets/premierLogos/brentford.png",
        "nombre":"Brentford FC",
        "ciudad":"Londres",
        "pais":"inglaterra",
@@ -169,6 +183,7 @@
     },
     {
        "id":15,
+       "logo": "../assets/premierLogos/leeds.png",
        "nombre":"Leeds United",
        "ciudad":"Leeds",
        "pais":"inglaterra",
@@ -181,6 +196,7 @@
     },
     {
        "id":16,
+       "logo": "../assets/premierLogos/everton.png",
        "nombre":"Everton FC",
        "ciudad":"Liverpool",
        "pais":"inglaterra",
@@ -193,6 +209,7 @@
     },
     {
        "id":17,
+       "logo": "../assets/premierLogos/newcastle.png",
        "nombre":"Newcastle United",
        "ciudad":"Newcastle",
        "pais":"inglaterra",
@@ -205,6 +222,7 @@
     },
     {
        "id":18,
+       "logo": "../assets/premierLogos/norwich.png",
        "nombre":"Norwich City",
        "ciudad":"Norwich",
        "pais":"inglaterra",
@@ -217,6 +235,7 @@
     },
     {
        "id":19,
+       "logo": "../assets/premierLogos/watford.png",
        "nombre":"Watford FC",
        "ciudad":"Watford",
        "pais":"inglaterra",
@@ -229,6 +248,7 @@
     },
     {
        "id":20,
+       "logo": "../assets/premierLogos/burnley.png",
        "nombre":"Burnley FC",
        "ciudad":"Lancashire",
        "pais":"inglaterra",

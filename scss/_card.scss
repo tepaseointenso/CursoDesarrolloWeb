@@ -1,0 +1,49 @@
+@import '_variables';
+
+.blanco{
+    color: white;
+}
+.teamCard{
+    color: $white;
+    margin-bottom: 10%;
+    img{
+        width: 60%;
+    }
+}
+
+.nav-item-teams{
+    @extend .nav-item;
+    
+}
+.nav-link-teams{
+    @extend .nav-link;
+    text-decoration: none;
+}
+
+.card-title-equipos{
+    margin-top: 1em;
+    font-size: 1rem;
+}
+.card-title-info{
+    font-size: 5vmin;
+}
+
+.list-group-premier{
+    justify-content: center;
+    a{
+        text-decoration: none;
+    }
+}
+
+.list-group-serieA{
+    @extend .list-group-premier;
+}
+
+.list-group-liga{
+    @extend .list-group-premier;
+}
+
+.list-group-bundes{
+    @extend .list-group-premier;
+}
+

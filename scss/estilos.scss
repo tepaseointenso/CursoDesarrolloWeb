@@ -1,127 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;400;500;600&display=swap");
-@include variables;
-/* font-family: 'IBM Plex Sans Thai Looped', sans-serif; */
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
+@import '_navbar';
+@import '_variables';
+@import '_tools';
+@import '_footer';
+@import '_fonts';
+@import '_card';
 
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-nav {
-  background: #37003A;
-  color: #fff;
-  padding: 5px 20px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-nav a {
-  color: white;
-  font-weight: 500;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-
-.menu li {
-  font-size: 16px;
-  padding: 15px 5px;
-  white-space: nowrap;
-}
-
-.logo a,
-.toggle a {
-  font-size: 20px;
-}
-
-/* Mobile menu */
-.menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.menu .toggle {
-  float: right;
-}
-
-.toggle {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-}
-
-.item.button {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-
-.item {
-  width: 100%;
-  text-align: center;
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
-  display: none;
-}
-
-.item.active {
-  display: block;
-}
-
-/* Desktop menu */
-@media all and (min-width: 900px) {
-  .item {
-    display: block;
-    width: auto;
-  }
-  .menu li:hover {
-    background-color: #FF57A8;
-  }
-  .toggle {
-    display: none;
-  }
-  .logo {
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
-  }
-  .item {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
-  }
-  .button {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
-  }
-  .menu li {
-    padding: 15px 10px;
-  }
-  .menu li.button {
-    padding-right: 0;
-  }
-}
 
 body {
+  font-family: $font-primary;
   position: relative;
   min-height: 100vh;
   background-image: url("../assets/fondo.png");
@@ -130,45 +16,25 @@ body {
   background-size: cover;
 }
 
-#banner {
-  background-image: url("../assets/banner.jpg");
-  width: 100%;
-  height: 20vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.body .titulo {
-  font-size: 3rem;
-  text-align: center;
-}
-
-.logo {
-  float: left;
-  -webkit-filter: invert(99%) sepia(1%) saturate(1801%) hue-rotate(240deg) brightness(112%) contrast(100%);
-          filter: invert(99%) sepia(1%) saturate(1801%) hue-rotate(240deg) brightness(112%) contrast(100%);
+.navbarLogo {
+  filter: invert(99%) sepia(1%) saturate(1801%) hue-rotate(240deg) brightness(112%) contrast(100%);
   height: auto;
   width: auto;
-  margin-top: 3px;
-  max-height: 65px;
+  max-height: 50px;
   max-width: 250px;
 }
 
-#menu {
-  float: right;
-}
-
-/* CSS FORMULARIO */
 .contain {
   min-width: 500px;
   max-width: 80vw;
   height: 20%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 72px;
   padding: 1em;
   padding-bottom: 150px;
   padding-top: 50px;
+  z-index: 10;
 }
 
 h3,
@@ -178,7 +44,7 @@ ul {
 
 input:focus,
 textarea:focus {
-  outline: 3px solid #FF57A8;
+  outline: 3px solid $color-secundario;
 }
 
 input,
@@ -195,16 +61,14 @@ ul {
   padding: 0;
 }
 
-.contacts {
-  background-color: #37003A;
+.bannerLateral {
+  background-color: $color-primario;
   color: #fff;
 }
 
 .fondoForm {
   color: #fff;
-  background: rgba(0, 0, 0, 0.2);
 }
-
 
 .botones {
   display: -ms-grid;
@@ -222,17 +86,6 @@ form p {
   margin: 0;
 }
 
-.full-width {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1 / 3;
-}
-
-.mid-width {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / 3;
-}
 
 button,
 input,
@@ -247,7 +100,7 @@ button {
 }
 
 button:hover, button:focus {
-  background: #FF57A8;
+  background: $color-secundario;
   color: #fff;
   outline: 0;
 }
@@ -256,17 +109,25 @@ button:hover, button:focus {
   background: none;
 }
 
-.tituloNew {
-  line-height: 1em;
-  max-width: 100%;
-  font-weight: 500;
-  font-size: 5rem;
+.titulo {
+  font-size: 3.5rem;
+  line-height: 1.21;
+  margin-bottom: 2rem;
+  transition: .2s;
+  font-weight: 600;
+  padding: 2rem;
+}
+
+.tituloTeams{
+  @extend .titulo;
   text-align: right;
 }
 
 .logoSide {
   filter: invert(56%) sepia(57%) saturate(5110%) hue-rotate(308deg) brightness(113%) contrast(101%);
-  max-width: 100%;
+  min-width: 100%;
+  height: 200px;
+  width: auto;
 }
 
 #mensaje, #confirmation {
@@ -288,6 +149,7 @@ button:hover, button:focus {
 
 td {
   min-width: 100px;
+  max-width: 350px;
 }
 
 #tabla, #datosTabla {
@@ -304,7 +166,7 @@ td {
 
 .cabeceraTabla {
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding-bottom: 2em;
 }
 
@@ -327,16 +189,15 @@ td {
 }
 
 .inactivo::before {
-  -webkit-transform: scaleX(0);
+
           transform: scaleX(0);
-  -webkit-transform-origin: bottom right;
+
           transform-origin: bottom right;
 }
 
 .inactivo:hover::before {
-  -webkit-transform: scaleX(1);
+
           transform: scaleX(1);
-  -webkit-transform-origin: bottom left;
           transform-origin: bottom left;
 }
 
@@ -349,18 +210,12 @@ td {
   bottom: 0;
   left: 0;
   inset: 0 0 0 0;
-  background: #FF57A8;
+  background: $color-secundario;
   z-index: -1;
-  -webkit-transition: -webkit-transform .3s ease;
-  transition: -webkit-transform .3s ease;
   transition: transform .3s ease;
-  transition: transform .3s ease, -webkit-transform .3s ease;
+
 }
 
-.inactivo {
-  position: relative;
-  font-size: 3rem;
-}
 
 html {
   overflow-y: scroll;
@@ -386,50 +241,13 @@ html {
 
 .clubName {
   text-align: left;
+  padding-left: 0.5rem;
 }
 
-.containerFooter {
-  background-color: #37003A;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  /* Footer height */
-}
 
-.footerInfo {
-  color: #fff;
-}
 
 .fondoTabla {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.mostrarTabla {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 2fr 5fr;
-      grid-template-columns: 2fr 5fr;
-}
-
-.mostrarTablaHome {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 2fr 3fr;
-      grid-template-columns: 2fr 3fr;
-}
-
-.bannerLateral {
-  background: #37003A;
-  color: #fff;
-  text-align: center;
-  z-index: 1;
-}
-
-.bannerLateralHome {
-  background: #37003A;
-  color: #fff;
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 .tituloBanner {
@@ -450,26 +268,53 @@ html {
   color: #fff;
 }
 
-.btnRight {
-  font-size: 1.2rem;
-  text-align: right;
-}
-
 .premier {
   background-image: url("../assets/premier-icon.png") 10px 10px no-repeat;
 }
 
-#premierEquipos, #laLigaEquipos, #serieAequipos{
+#premierEquipos, #laLigaEquipos, #serieAequipos, #bundesEquipos{
   color: #fff;
   text-align: center;
   margin: auto;
 }
 
 body.swal2-shown > [aria-hidden="true"] {
-  -webkit-transition: 0.2s -webkit-filter;
-  transition: 0.2s -webkit-filter;
   transition: 0.2s filter;
-  transition: 0.2s filter, 0.2s -webkit-filter;
-  -webkit-filter: blur(10px);
           filter: blur(10px);
+}
+
+.indexImg{
+  min-width: 100%;
+  height: 500px;
+  max-width: 100%;
+}
+
+
+.logosTabla{
+  img{
+    width: 10%;
+  }
+}
+
+
+.modalLogo{
+  width: 100%;
+}
+
+.iconForma{
+  height: 2rem;
+  max-height: 100%;
+}
+
+.tituloAtributo{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.atributoModal{
+  font-size: 2rem;
+}
+
+.modal-content{
+  color: $white;
 }
