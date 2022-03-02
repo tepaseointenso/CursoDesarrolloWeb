@@ -458,8 +458,11 @@ function loadBD(){
         icon: 'success',
         confirmButtonText: 'Listo',
         confirmButtonColor: '#FF57A8'
-      }
-      )
+      }).then((result2) => {
+        if (result2.isConfirmed){
+          location.reload();
+        }
+      })
     }
   })
 }
