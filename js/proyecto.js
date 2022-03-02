@@ -104,7 +104,6 @@ $(".btnForm").click(() => {
 });
 
 if($("#logoEquipo").length === 0){
-  alert('tavacio');
   $("#logoEquipo").val('./assets/placeholder.png');
 }
 
