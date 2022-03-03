@@ -10,16 +10,13 @@
     <title>Equipos</title>
 </head>
 <body>
-    <div id="forblur">
-    </div>
-    <div class="container-fluid px-0">
-        <div id="background"></div>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primario py-0 px-0"> 
-            <a class="navbar-brand" href="index.html"><img src="./assets/logo.png" class="navbarLogo"></a> 
-            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primario py-0 px-0"> 
+        <div class="container-fluid px-0">
+            <a class="navbar-brand" href="index.html"><img src="/assets/logo.png" class="navbarLogo"></a> 
+            <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> 
                 <span class="navbar-toggler-icon"></span> 
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item"> <a class="nav-link" href="index.html">Inicio</a> </li>
                     <li class="nav-item activeNav"> <a class="nav-link" href="equipos.html">Equipos</a> </li>
@@ -27,44 +24,42 @@
                     <li class="nav-item"> <a class="nav-link" onclick="scrollFooter();">Contacto</a> </li>
                 </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 
-
-        <div class="row">
-            <div class="card fondoTabla blanco">
-                <div class="card-header">
-                    <h5 class="card-title-info">Informacion de los Equipos</h5>
-                    <ul class="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
-                        <li class="nav-item-teams inactivo">
-                            <a class="nav-link-teams active" aria-current="true" data-bs-toggle="tab" href="#premier">Premier League</a>
-                        </li>
-                        <li class="nav-item-teams inactivo">
-                            <a class="nav-link-teams" data-bs-toggle="tab" href="#laliga">laLiga</a>
-                        </li>
-                        <li class="nav-item-teams inactivo">
-                            <a class="nav-link-teams" data-bs-toggle="tab" href="#serieA">Serie A</a>
-                        </li>
-                        <li class="nav-item-teams inactivo">
-                            <a class="nav-link-teams" data-bs-toggle="tab" href="#bundesliga">Bundesliga</a>
-                        </li>
-                    </ul>
-                </div>
-                <form class="card-body tab-content">
-                    <div class="tab-pane active" id="premier">
-                        <div class="list-group-premier row"></div>
-                    </div>
-                    <div class="tab-pane" id="laliga">
-                        <div class="list-group-liga row"></div>
-                    </div>
-                    <div class="tab-pane" id="serieA">
-                        <div class="list-group-serieA row"></div>
-                    </div>
-                    <div class="tab-pane" id="bundesliga">
-                        <div class="list-group-bundes row"></div>
-                    </div>
-                </form>
+    <div class="row">
+        <div class="card fondoTabla blanco">
+            <div class="card-header">
+                <h5 class="card-title-info">Informacion de los Equipos</h5>
+                <ul class="nav nav-tabs card-header-tabs justify-content-center" data-bs-tabs="tabs">
+                    <li class="nav-item-teams">
+                        <a class="nav-link-teams active" aria-current="true" data-bs-toggle="tab" href="#premier">Premier League</a>
+                    </li>
+                    <li class="nav-item-teams">
+                        <a class="nav-link-teams" data-bs-toggle="tab" href="#laliga">laLiga</a>
+                    </li>
+                    <li class="nav-item-teams">
+                        <a class="nav-link-teams" data-bs-toggle="tab" href="#serieA">Serie A</a>
+                    </li>
+                    <li class="nav-item-teams">
+                        <a class="nav-link-teams" data-bs-toggle="tab" href="#bundesliga">Bundesliga</a>
+                    </li>
+                </ul>
             </div>
+            <form class="card-body tab-content">
+                <div class="tab-pane active" id="premier">
+                    <div class="list-group-premier row"></div>
+                </div>
+                <div class="tab-pane" id="laliga">
+                    <div class="list-group-liga row"></div>
+                </div>
+                <div class="tab-pane" id="serieA">
+                    <div class="list-group-serieA row"></div>
+                </div>
+                <div class="tab-pane" id="bundesliga">
+                    <div class="list-group-bundes row"></div>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -72,7 +67,7 @@
         <div class="row fondoTabla">
             <div class="bannerLateral col-lg-4 px-0 py-5">
                     <p class="tituloTeams">AÑADIR NUEVO EQUIPO</p>
-                    <img class="logoSide" src="./assets/logo.png" alt="Logo">
+                    <img class="logoSide" src="/assets/logo.png" alt="Logo">
             </div>
             <div class="fondoForm col-lg-8 col-md-12 px-0 mt-auto mb-auto">
                 <form id="agregarEquipo" >
@@ -80,7 +75,7 @@
                         <div class="col-lg-6 col-md-12">
                             <p>
                             <label for="">Logo del equipo (URL de .png)</label>
-                            <input type="text" placeholder="Opcional" id="logoEquipo" />
+                            <input type="text" placeholder="Opcional [EN PRUEBAS]" id="logoEquipo"/>
                             </p>
                         </div>
                     </div>
@@ -144,16 +139,17 @@
                         </div>
                     </div>
                     <div class="row m-3">
-                        <div class="full-width">
+                        <div class="col-6">
                             <a href="clasificacion.html">
-                                <button type="button" id="clasificacion">Ver Clasificacion</button>
+                                <button type="button" class="full-width" id="clasificacion">Ver Clasificacion</button>
                             </a>
                         </div>
-                    </div>
-                    <div class="row m-3">
-                        <div class="full-width">
-                            <button type="button" id="baseDatos">Cargar Base de Datos</button>
+                        <div class="col-6">
+                            <button type="button" class="full-width" id="baseDatos">Cargar Base de Datos</button>
                         </div>
+
+                        </div>
+                    </div>
                     </div>
                 </form>
             </div>
@@ -165,9 +161,9 @@
                 <div class="col-md-12 text-center">
                     <h2 class="footer-heading"><a href="#" class="logo">Proyecto Desarrollo Web/Javascript</a></h2>
                     <p class="menu">
-                        <a href="#">Inicio</a>
-                        <a href="#">Equipos</a>
-                        <a href="#">Clasificacion</a>
+                        <a href="index.html">Inicio</a>
+                        <a href="equipos.html">Equipos</a>
+                        <a href="clasificacion.html">Clasificacion</a>
                         <a href="#">Contacto</a>
                     </p>
                     <ul class="ftco-footer-social p-0">

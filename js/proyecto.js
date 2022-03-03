@@ -104,7 +104,7 @@ $(".btnForm").click(() => {
 });
 
 if($("#logoEquipo").length === 0){
-  $("#logoEquipo").val('./assets/placeholder.png');
+  $("#logoEquipo").val('/assets/placeholder.png');
 }
 
 
@@ -128,6 +128,9 @@ function crearEquipo(e){
   }
   else if ($("#pais").val() == 'italia'){
     liga = 'serieAequipos';
+  }
+  else if ($("#pais").val() == 'alemania'){
+    liga = 'bundesEquipos';
   }
   $("#agregarEquipo")[0].reset();
   totalEquipos++;
@@ -161,7 +164,7 @@ Swal.fire({
 function clearTeams(){
   Swal.fire({
     title: '¿Estás seguro?',
-    text: "Se borraran todos los equipos",
+    text: "Se borraran todos los equipos de esta liga",
     icon: 'warning',
     color: 'white',
     showCancelButton: true,
@@ -188,7 +191,35 @@ function clearTeams(){
           divLigaElegida.reload();
         }
       })
+    }
+  })
 
+}
+function clearAll(){
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "Se borraran todos los equipos",
+    icon: 'warning',
+    color: 'white',
+    showCancelButton: true,
+    background: '#37003A',
+    confirmButtonColor: '#FF57A8',
+    cancelButtonColor: '#FF57A8',
+    confirmButtonText: 'Si, borrar todo',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      ligaActual = [];
+      localStorage.clear();
+      Swal.fire({
+        background: '#37003A',
+        color: 'white',
+        confirmButtonColor: '#FF57A8',
+        cancelButtonColor: '#FF57A8',
+        title: 'Eliminado!',
+        text: `Todas las bases de datos fueron eliminadas.`,
+        icon: 'success'
+      })
     }
   })
 
@@ -417,7 +448,7 @@ function mostrarTabla(ligaElegida){
   }
 
 function scrollFooter(){
-  $("html, body").animate({ scrollTop: $("#footer").scrollTop() }, 1000);
+  $("html, body").animate({ scrollTop: $(".footer").scrollTop() }, 1000);
 }
 
 $("#baseDatos").click(() => {
@@ -425,6 +456,9 @@ $("#baseDatos").click(() => {
 });
 $(".btnClear").click(() => {
   clearTeams();
+});
+$(".btnClearAll").click(() => {
+  clearAll();
 });
 
 function loadBD(){
@@ -536,7 +570,7 @@ if (premierEquipos.length != 0){
   }
 }
 else{
-  $('.list-group-liga').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
+  $('.list-group-premier').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
 }
 
 if (laLigaEquipos.length != 0){
@@ -545,35 +579,45 @@ if (laLigaEquipos.length != 0){
     let containModal = 'containl' + equipo.id;
     let idContainModal = '#' + containModal;
     $('.list-group-liga').append(`
-                              <div class="col-lg-1 col-md-2 col-sm-3" align="center">
-                                <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
-                                <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
-                                <div class="modal-dialog modal-lg noBlur">
-                                  <div class="modal-content bg-dark">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="row">
-                                        <div class="col-6">
-                                          <img class="modalLogo" src=${equipo.logo}>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                      <p>Clasificacion actual: 1</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                    <div class="teamCard">
-                                      <img src=${equipo.logo} class="card-img-top" alt="...">
-                                      <p class="card-title-equipos">${equipo.nombre}</p>
-                                    </div>
-                                </a>
-                              </div>`);
-  }
+    <div class="col-lg-1 col-md-2 col-sm-3" align="center">
+    <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
+    <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <img class="modalLogo" src=${equipo.logo}>
+            </div>
+            <div class="col-6">
+              <div class="row infoEquipo" align="left">
+                <p class="tituloAtributo">Estadio: </p><span class="atributoModal">${equipo.estadio}</span>
+                <p class="tituloAtributo">Ciudad: </p><span class="atributoModal">${equipo.ciudad}</span>
+                <p class="tituloAtributo">Partidos Jugados: </p><span class="atributoModal">${equipo.partidosJugados}</span>
+                <p class="tituloAtributo">Puntos: </p><span class="atributoModal">${equipo.puntos}</span>
+                <p class="tituloAtributo">Ultimos partidos: </p>
+                <span class="atributoModal">${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <p>Clasificacion actual: 1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="teamCard">
+          <img src=${equipo.logo} class="card-img-top" alt="...">
+          <p class="card-title-equipos">${equipo.nombre}</p>
+        </div>
+    </a>
+  </div>`);
+}
 }
 else{
   $('.list-group-liga').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
@@ -585,10 +629,60 @@ if (serieAequipos.length != 0){
     let containModal = 'contains' + equipo.id;
     let idContainModal = '#' + containModal;
     $('.list-group-serieA').append(`
-                                <div class="col-lg-1 col-md-2 col-sm-3" align="center">
+    <div class="col-lg-1 col-md-2 col-sm-3" align="center">
+    <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
+    <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <img class="modalLogo" src=${equipo.logo}>
+            </div>
+            <div class="col-6">
+              <div class="row infoEquipo" align="left">
+                <p class="tituloAtributo">Estadio: </p><span class="atributoModal">${equipo.estadio}</span>
+                <p class="tituloAtributo">Ciudad: </p><span class="atributoModal">${equipo.ciudad}</span>
+                <p class="tituloAtributo">Partidos Jugados: </p><span class="atributoModal">${equipo.partidosJugados}</span>
+                <p class="tituloAtributo">Puntos: </p><span class="atributoModal">${equipo.puntos}</span>
+                <p class="tituloAtributo">Ultimos partidos: </p>
+                <span class="atributoModal">${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <p>Clasificacion actual: 1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="teamCard">
+          <img src=${equipo.logo} class="card-img-top" alt="...">
+          <p class="card-title-equipos">${equipo.nombre}</p>
+        </div>
+    </a>
+  </div>`);
+}
+}
+else{
+  $('.list-group-serieA').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
+}
+
+if (bundesEquipos.length != 0){
+  for (equipo of bundesEquipos){
+    let nombreModal = 'modalb' + equipo.id;
+    let containModal = 'containb' + equipo.id;
+    let idContainModal = '#' + containModal;
+    $('.list-group-bundes').append(`
+                                  <div class="col-lg-1 col-md-2 col-sm-3" align="center">
                                   <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
                                   <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
-                                  <div class="modal-dialog modal-lg noBlur">
+                                  <div class="modal-dialog modal-lg">
                                     <div class="modal-content bg-dark">
                                       <div class="modal-header">
                                         <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
@@ -600,9 +694,15 @@ if (serieAequipos.length != 0){
                                             <img class="modalLogo" src=${equipo.logo}>
                                           </div>
                                           <div class="col-6">
-                                            <p>Estadio: ${equipo.estadio}</p>
+                                            <div class="row infoEquipo" align="left">
+                                              <p class="tituloAtributo">Estadio: </p><span class="atributoModal">${equipo.estadio}</span>
+                                              <p class="tituloAtributo">Ciudad: </p><span class="atributoModal">${equipo.ciudad}</span>
+                                              <p class="tituloAtributo">Partidos Jugados: </p><span class="atributoModal">${equipo.partidosJugados}</span>
+                                              <p class="tituloAtributo">Puntos: </p><span class="atributoModal">${equipo.puntos}</span>
+                                              <p class="tituloAtributo">Ultimos partidos: </p>
+                                              <span class="atributoModal">${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}${getRandomImage(arrayImg, "")}</span>
+                                            </div>
                                           </div>
-
                                         </div>
                                       </div>
                                       <div class="modal-footer justify-content-center">
@@ -617,47 +717,7 @@ if (serieAequipos.length != 0){
                                       </div>
                                   </a>
                                 </div>`);
-  }
-}
-else{
-  $('.list-group-serieA').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
-}
-
-if (bundesEquipos.length != 0){
-  for (equipo of bundesEquipos){
-    let nombreModal = 'modalb' + equipo.id;
-    let containModal = 'containb' + equipo.id;
-    let idContainModal = '#' + containModal;
-    $('.list-group-bundes').append(`
-                              <div class="col-lg-1 col-md-2 col-sm-3" align="center">
-                                <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
-                                <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
-                                <div class="modal-dialog modal-lg noBlur">
-                                  <div class="modal-content bg-dark">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="row">
-                                        <div class="col-6">
-                                          <img class="modalLogo" src=${equipo.logo}>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                      <p>Clasificacion actual: 1</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                                    <div class="teamCard">
-                                      <img src=${equipo.logo} class="card-img-top" alt="...">
-                                      <p class="card-title-equipos">${equipo.nombre}</p>
-                                    </div>
-                                </a>
-                              </div>`);
-  }
+                              }
 }
 else{
   $('.list-group-bundes').html(`<h2 class="tituloBanner">No existen equipos en esta liga. Por favor, agreguelos manualmente o cargue una base de datos.</h2>`)
@@ -665,7 +725,7 @@ else{
 
 
 function getRandomImage(imgAr, path) {
-    path = path || '../assets/formIcons/'; // default path here
+    path = path || '/assets/formIcons/'; // default path here
     var num = Math.floor( Math.random() * imgAr.length );
     var img = imgAr[ num ];
     var imgStr = '<img class="iconForma" src="' + path + img + '" alt = "">';

@@ -32,24 +32,6 @@
   background-color: #FF57A8;
 }
 
-.right {
-  margin-left: auto;
-}
-
-.navbar-collapse.collapse.in {
-  display: block !important;
-}
-
-@media (max-width: 992px) {
-  .right {
-    margin-left: 0;
-  }
-  .nav-item, .nav-item-teams {
-    width: 100%;
-    text-align: left;
-  }
-}
-
 .color-primario {
   color: #37003A;
 }
@@ -120,7 +102,8 @@ footer {
   text-align: right;
 }
 
-.inactivo {
+.menuBtn {
+  width: 100%;
   position: relative;
   z-index: 1;
 }
@@ -165,7 +148,7 @@ body {
   font-family: "IBM Plex Sans Thai Looped", sans-serif;
   position: relative;
   min-height: 100vh;
-  background-image: url("../assets/fondo.png");
+  background-image: url("/assets/fondo.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -204,8 +187,7 @@ textarea:focus {
 }
 
 input,
-select,
-button {
+select {
   width: 100%;
   border: 1px solid #000;
   background-color: rgba(255, 255, 255, 0.6);
@@ -249,7 +231,6 @@ select {
 
 button {
   background: lightgrey;
-  width: 100%;
   border: 0;
 }
 
@@ -259,14 +240,13 @@ button:hover, button:focus {
   outline: 0;
 }
 
-.inactivo:hover {
+.menuBtn:hover {
   background: none;
 }
 
 .titulo, .tituloTeams {
   font-size: 3.5rem;
   line-height: 1.21;
-  margin-bottom: 2rem;
   -webkit-transition: .2s;
   transition: .2s;
   font-weight: 600;
@@ -278,11 +258,17 @@ button:hover, button:focus {
 }
 
 .logoSide {
+  display: block;
   -webkit-filter: invert(56%) sepia(57%) saturate(5110%) hue-rotate(308deg) brightness(113%) contrast(101%);
           filter: invert(56%) sepia(57%) saturate(5110%) hue-rotate(308deg) brightness(113%) contrast(101%);
-  min-width: 100%;
-  height: 200px;
-  width: auto;
+  max-height: 80%;
+  max-width: 80%;
+  margin: auto;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
 }
 
 #mensaje, #confirmation {
@@ -292,23 +278,8 @@ button:hover, button:focus {
   font-size: 2rem;
 }
 
-#tabla {
-  color: #fff;
-  text-align: center;
-  margin: auto;
-}
-
 .clasificacion {
   text-align: center;
-}
-
-td {
-  min-width: 100px;
-  max-width: 350px;
-}
-
-#tabla, #datosTabla {
-  color: #fff;
 }
 
 .tituloTabla {
@@ -317,6 +288,30 @@ td {
   font-size: 3rem;
   color: #fff;
   margin-bottom: 5%;
+}
+
+td:nth-child(1) {
+  width: 35%;
+}
+
+td:nth-child(2) {
+  width: 10%;
+}
+
+td:nth-child(3) {
+  width: 10%;
+}
+
+td:nth-child(4) {
+  width: 10%;
+}
+
+td:nth-child(5) {
+  width: 10%;
+}
+
+td:nth-child(6) {
+  width: 10%;
 }
 
 .cabeceraTabla {
@@ -343,21 +338,21 @@ td {
   bottom: 0;
 }
 
-.inactivo::before {
+.menuBtn::before {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
 }
 
-.inactivo:hover::before {
+.menuBtn:hover::before {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transform-origin: bottom left;
           transform-origin: bottom left;
 }
 
-.inactivo::before {
+.menuBtn::before {
   content: " ";
   display: block;
   position: absolute;
@@ -418,13 +413,13 @@ html {
   color: #fff;
 }
 
-.inactivo {
+.menuBtn {
   background-color: transparent;
   color: #fff;
 }
 
 .premier {
-  background-image: url("../assets/premier-icon.png") 10px 10px no-repeat;
+  background-image: url("/assets/premier-icon.png") 10px 10px no-repeat;
 }
 
 #premierEquipos, #laLigaEquipos, #serieAequipos, #bundesEquipos {
@@ -472,5 +467,9 @@ body.swal2-shown > [aria-hidden="true"] {
 
 .modal-content {
   color: #fff;
+}
+
+.full-width {
+  width: 100%;
 }
 /*# sourceMappingURL=estilos.css.map */

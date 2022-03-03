@@ -1,12 +1,11 @@
 @import '_variables';
 
-
 .bg-primario {
     background-color: $color-primario
 }
 
 .navbar-brand {
-    padding: 11px 20px
+    padding: 11px 20px;
 }
 
 .activeNav {
@@ -30,21 +29,21 @@
     background-color: $color-secundario
 }
 
-.right {
-    margin-left: auto
-}
+// .right {
+//     margin-left: auto
+// }
 
-.navbar-collapse.collapse.in {
-    display: block !important
-}
+// .navbar-collapse.collapse.in {
+//     display: block !important
+// }
 
-@media (max-width: 992px) {
-    .right {
-        margin-left: 0
-    }
+// @media (max-width: 992px) {
+//     .right {
+//         margin-left: 0
+//     }
 
-    .nav-item {
-        width: 100%;
-        text-align: left
-    }
-}
+    // .nav-item {
+    //     width: 100%;
+    //     text-align: left
+    // }
+

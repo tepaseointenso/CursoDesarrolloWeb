@@ -1,7 +1,7 @@
 [
    {
       "id":1,
-      "logo": "../assets/bundesLogos/bayern.png",
+      "logo": "/assets/bundesLogos/bayern.png",
       "nombre":"Bayern Munich",
       "ciudad":"Munich",
       "pais":"alemania",
@@ -14,7 +14,7 @@
    },
    {
       "id":2,
-      "logo": "../assets/bundesLogos/dortmund.png",
+      "logo": "/assets/bundesLogos/dortmund.png",
       "nombre":"Borussia Dortmund",
       "ciudad":"Dortmund",
       "pais":"alemania",
@@ -27,7 +27,7 @@
    },
    {
       "id":3,
-      "logo": "../assets/bundesLogos/leverkusen.png",
+      "logo": "/assets/bundesLogos/leverkusen.png",
       "nombre":"Bayer Leverkusen",
       "ciudad":"Leverkusen",
       "pais":"alemania",
@@ -40,7 +40,7 @@
    },
    {
       "id":4,
-      "logo": "../assets/bundesLogos/leipzig.png",
+      "logo": "/assets/bundesLogos/leipzig.png",
       "nombre":"RB Leipzig",
       "ciudad":"Leipzig",
       "pais":"alemania",
@@ -53,7 +53,7 @@
    },
    {
       "id":5,
-      "logo": "../assets/bundesLogos/freiburg.png",
+      "logo": "/assets/bundesLogos/freiburg.png",
       "nombre":"SC Friburg",
       "ciudad":"Friburgo",
       "pais":"alemania",
@@ -66,7 +66,7 @@
    },
    {
       "id":6,
-      "logo": "../assets/bundesLogos/hoff.png",
+      "logo": "/assets/bundesLogos/hoff.png",
       "nombre":"TSG 1899 Hoffenheim",
       "ciudad":"Sinsheim",
       "pais":"alemania",
@@ -79,7 +79,7 @@
    },
    {
       "id":7,
-      "logo": "../assets/bundesLogos/berlin.png",
+      "logo": "/assets/bundesLogos/berlin.png",
       "nombre":"FC Union Berlin",
       "ciudad":"Berlin",
       "pais":"alemania",
@@ -92,7 +92,7 @@
    },
    {
       "id":8,
-      "logo": "../assets/bundesLogos/koln.png",
+      "logo": "/assets/bundesLogos/koln.png",
       "nombre":"1.FC Koln",
       "ciudad":"Colonia",
       "pais":"alemania",
@@ -105,7 +105,7 @@
    },
    {
       "id":9,
-      "logo": "../assets/bundesLogos/mainz.png",
+      "logo": "/assets/bundesLogos/mainz.png",
       "nombre":"1. FSV Mainz 05",
       "ciudad":"Maguncia",
       "pais":"alemania",
@@ -118,7 +118,7 @@
    },
    {
       "id":10,
-      "logo": "../assets/bundesLogos/bochum.png",
+      "logo": "/assets/bundesLogos/bochum.png",
       "nombre":"VfL Bochum",
       "ciudad":"Bochum",
       "pais":"alemania",
@@ -131,7 +131,7 @@
    },
    {
       "id":11,
-      "logo": "../assets/bundesLogos/frankfurt.png",
+      "logo": "/assets/bundesLogos/frankfurt.png",
       "nombre":"Eintracht Frankfurt",
       "ciudad":"Frankfurt",
       "pais":"alemania",
@@ -144,7 +144,7 @@
    },
    {
       "id":12,
-      "logo": "../assets/bundesLogos/wolfsburg.png",
+      "logo": "/assets/bundesLogos/wolfsburg.png",
       "nombre":"VfL Wolfsburg",
       "ciudad":"Wolfsburgo",
       "pais":"alemania",
@@ -157,7 +157,7 @@
    },
    {
       "id":13,
-      "logo": "../assets/bundesLogos/monchen.png",
+      "logo": "/assets/bundesLogos/monchen.png",
       "nombre":"Borussia Mönchengladbach",
       "ciudad":"Mönchengladbach",
       "pais":"alemania",
@@ -170,7 +170,7 @@
    },
    {
       "id":14,
-      "logo": "../assets/bundesLogos/stutgart.png",
+      "logo": "/assets/bundesLogos/stutgart.png",
       "nombre":"VfB Stuttgart",
       "ciudad":"Stuttgart",
       "pais":"alemania",
@@ -183,7 +183,7 @@
    },
    {
       "id":15,
-      "logo": "../assets/bundesLogos/arminia.png",
+      "logo": "/assets/bundesLogos/arminia.png",
       "nombre":"Arminia Bielefeld",
       "ciudad":"Bielefeld",
       "pais":"alemania",
@@ -196,7 +196,7 @@
    },
    {
       "id":16,
-      "logo": "../assets/bundesLogos/augsburg.png",
+      "logo": "/assets/bundesLogos/augsburg.png",
       "nombre":"FC Augsburg",
       "ciudad":"Augsburgo",
       "pais":"alemania",
@@ -209,7 +209,7 @@
    },
    {
       "id":17,
-      "logo": "../assets/bundesLogos/hertha.png",
+      "logo": "/assets/bundesLogos/hertha.png",
       "nombre":"Hertha Berlin",
       "ciudad":"Berlin",
       "pais":"alemania",
@@ -222,7 +222,7 @@
    },
    {
       "id":18,
-      "logo": "../assets/bundesLogos/greuther.png",
+      "logo": "/assets/bundesLogos/greuther.png",
       "nombre":"Greuther Fürth",
       "ciudad":"Fürth",
       "pais":"alemania",

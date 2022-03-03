@@ -1,7 +1,7 @@
 [
 {
    "id": 1,
-   "logo": "../assets/serieAlogos/milan.png",
+   "logo": "/assets/serieAlogos/milan.png",
    "nombre": "AC Milan",
    "ciudad": "Milan",
    "pais": "italia",
@@ -14,7 +14,7 @@
 },
 {
    "id": 2,
-   "logo": "../assets/serieAlogos/inter.png",
+   "logo": "/assets/serieAlogos/inter.png",
    "nombre": "Inter Milan",
    "ciudad": "Milan",
    "pais": "italia",
@@ -27,7 +27,7 @@
 },
 {
    "id": 3,
-   "logo": "../assets/serieAlogos/napoli.png",
+   "logo": "/assets/serieAlogos/napoli.png",
    "nombre": "Nápoles",
    "ciudad": "Nápoles",
    "pais": "italia",
@@ -40,7 +40,7 @@
 },
 {
    "id": 4,
-   "logo": "../assets/serieAlogos/juventus.png",
+   "logo": "/assets/serieAlogos/juventus.png",
    "nombre": "Juventus",
    "ciudad": "Turín",
    "pais": "italia",
@@ -53,7 +53,7 @@
 },
 {
    "id": 5,
-   "logo": "../assets/serieAlogos/atalanta.png",
+   "logo": "/assets/serieAlogos/atalanta.png",
    "nombre": "Atalanta",
    "ciudad": "Bergamo",
    "pais": "italia",
@@ -66,7 +66,7 @@
 },
 {
    "id": 6,
-   "logo": "../assets/serieAlogos/lazio.png",
+   "logo": "/assets/serieAlogos/lazio.png",
    "nombre": "Lazio",
    "ciudad": "Roma",
    "pais": "italia",
@@ -79,7 +79,7 @@
 },
 {
    "id": 7,
-   "logo": "../assets/serieAlogos/Fiorentina.png",
+   "logo": "/assets/serieAlogos/Fiorentina.png",
    "nombre": "Fiorentina",
    "ciudad": "Florencia",
    "pais": "italia",
@@ -92,7 +92,7 @@
 },
 {
    "id": 8,
-   "logo": "../assets/serieAlogos/roma.png",
+   "logo": "/assets/serieAlogos/roma.png",
    "nombre": "AS Roma",
    "ciudad": "Roma",
    "pais": "italia",
@@ -105,7 +105,7 @@
 },
 {
    "id": 9,
-   "logo": "../assets/serieAlogos/hellas.png",
+   "logo": "/assets/serieAlogos/hellas.png",
    "nombre": "Hellas Verona",
    "ciudad": "Verona",
    "pais": "italia",
@@ -118,7 +118,7 @@
 },
 {
    "id": 10,
-   "logo": "../assets/serieAlogos/torino.png",
+   "logo": "/assets/serieAlogos/torino.png",
    "nombre": "Torino",
    "ciudad": "Turín",
    "pais": "italia",
@@ -131,7 +131,7 @@
 },
 {
    "id": 11,
-   "logo": "../assets/serieAlogos/sassuolo.png",
+   "logo": "/assets/serieAlogos/sassuolo.png",
    "nombre": "Sassuolo",
    "ciudad": "Reggio",
    "pais": "italia",
@@ -144,7 +144,7 @@
 },
 {
    "id": 12,
-   "logo": "../assets/serieAlogos/empoli.png",
+   "logo": "/assets/serieAlogos/empoli.png",
    "nombre": "FC Empoli",
    "ciudad": "Empoli",
    "pais": "italia",
@@ -157,7 +157,7 @@
 },
 {
    "id": 13,
-   "logo": "../assets/serieAlogos/bologna.png",
+   "logo": "/assets/serieAlogos/bologna.png",
    "nombre": "Bologna FC",
    "ciudad": "Bologna",
    "pais": "italia",
@@ -170,7 +170,7 @@
 },
 {
    "id": 14,
-   "logo": "../assets/serieAlogos/spezia.png",
+   "logo": "/assets/serieAlogos/spezia.png",
    "nombre": "Spezia Calcio",
    "ciudad": "La Spezia",
    "pais": "italia",
@@ -183,7 +183,7 @@
 },
 {
    "id": 15,
-   "logo": "../assets/serieAlogos/sampdoria.png",
+   "logo": "/assets/serieAlogos/sampdoria.png",
    "nombre": "UC Sampdoria",
    "ciudad": "Génova",
    "pais": "italia",
@@ -196,7 +196,7 @@
 },
 {
    "id": 16,
-   "logo": "../assets/serieAlogos/udinese.png",
+   "logo": "/assets/serieAlogos/udinese.png",
    "nombre": "Udinese",
    "ciudad": "Údine",
    "pais": "italia",
@@ -209,7 +209,7 @@
 },
 {
    "id": 17,
-   "logo": "../assets/serieAlogos/venezia.png",
+   "logo": "/assets/serieAlogos/venezia.png",
    "nombre": "Venezia",
    "ciudad": "Venecia",
    "pais": "italia",
@@ -222,7 +222,7 @@
 },
 {
    "id": 18,
-   "logo": "../assets/serieAlogos/cagliari.png",
+   "logo": "/assets/serieAlogos/cagliari.png",
    "nombre": "Cagliari",
    "ciudad": "Cerdeña",
    "pais": "italia",
@@ -235,7 +235,7 @@
 },
 {
    "id": 19,
-   "logo": "../assets/serieAlogos/genoa.png",
+   "logo": "/assets/serieAlogos/genoa.png",
    "nombre": "Génova",
    "ciudad": "Génova",
    "pais": "italia",
@@ -248,7 +248,7 @@
 },
 {
    "id": 20,
-   "logo": "../assets/serieAlogos/salernitana.png",
+   "logo": "/assets/serieAlogos/salernitana.png",
    "nombre": "Salernitana",
    "ciudad": "Salerno",
    "pais": "italia",
