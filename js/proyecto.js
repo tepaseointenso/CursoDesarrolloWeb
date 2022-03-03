@@ -124,7 +124,7 @@ else{
 
 
 class Equipo {
-  constructor(id,logo,nombre,pais,ciudad,estadio,partidosGanados,partidosEmpatados,partidosPerdidos) {
+  constructor(id,logo,nombre,pais,ciudad,estadio,partidosGanados,partidosEmpatados,partidosPerdidos,ranking) {
     this.id = id;
     this.logo = logo;
     this.nombre = nombre;
@@ -135,7 +135,8 @@ class Equipo {
     this.partidosEmpatados = parseInt(partidosEmpatados);
     this.partidosPerdidos = parseInt(partidosPerdidos);
     this.partidosJugados = (this.partidosGanados + this.partidosEmpatados + this.partidosPerdidos);
-    this.puntos = (this.partidosGanados*3 + this.partidosEmpatados*1 + this.partidosPerdidos*0)
+    this.puntos = (this.partidosGanados*3 + this.partidosEmpatados*1 + this.partidosPerdidos*0);
+    this.ranking = ranking;
   }
 }
 
@@ -214,6 +215,7 @@ Swal.fire({
   }
 })
 }
+
 function clearTeams(){
   Swal.fire({
     title: '¿Estás seguro?',
@@ -283,6 +285,7 @@ window.onload = mostrarTabla(ligaElegida);
 function ordenarTabla(filtro,ligaElegida){
   ligaActual = window[ligaElegida];
   if (filtro === "Club"){
+    ordenPT = false;
     if (ordenClub == true){
       ligaActual.reverse();
       ordenClub = false;
@@ -293,6 +296,7 @@ function ordenarTabla(filtro,ligaElegida){
     }
   }
   else if (filtro === "PJ"){
+    ordenPT = false;
     ligaActual.sort(function(a,b){
       if (a.partidosJugados>b.partidosJugados){
         if (ordenPJ == true){
@@ -325,6 +329,7 @@ function ordenarTabla(filtro,ligaElegida){
       ordenPJ = !ordenPJ;
     }
     else if (filtro === "GA"){
+      ordenPT = false;
       ligaActual.sort(function(a,b){
         if (a.partidosGanados>b.partidosGanados){
           if (ordenGA == true){
@@ -357,6 +362,7 @@ function ordenarTabla(filtro,ligaElegida){
         ordenGA = !ordenGA;
       }
       else if (filtro === "EM"){
+        ordenPT = false;
         ligaActual.sort(function(a,b){
           if (a.partidosEmpatados>b.partidosEmpatados){
             if (ordenEM == true){
@@ -389,6 +395,7 @@ function ordenarTabla(filtro,ligaElegida){
           ordenEM = !ordenEM;
         }
         else if (filtro === "PE"){
+          ordenPT = false;
           ligaActual.sort(function(a,b){
             if (a.partidosPerdidos>b.partidosPerdidos){
               if (ordenPE == true){
@@ -447,22 +454,28 @@ function ordenarTabla(filtro,ligaElegida){
                     return 1;
                   }
                 }
+                else if (a.partidosGanados>b.partidosGanados){
+                  if (ordenPT == true){
+                    return -1;
+                  }
+                  else{
+                    return 1;
+                  }
+
+                }
                 else return -1;
               }
               });
               ordenPT = !ordenPT;
             }
     localStorage.setObj(ligaElegida,ligaActual)
-    $("#tabla").html("");
     mostrarTabla(ligaElegida);
 
 }
 
 
 function mostrarTabla(ligaElegida){
-
   divLigaElegida = "#" + ligaElegida;
-
   ligaActual = window[ligaElegida];
   if ($(divLigaElegida).ready()){
     if (ligaActual.length === 0){
@@ -473,6 +486,8 @@ function mostrarTabla(ligaElegida){
       $(divLigaElegida).html("");
         $(divLigaElegida).append(`
                             <tr class="cabeceraTabla">
+
+                            <td><a onclick="ordenarTabla('PT',ligaElegida);">Pos.</td>
                             <td><a onclick="ordenarTabla('Club',ligaElegida);">Club</td>
                             <td><a onclick="ordenarTabla('PJ',ligaElegida);">PJ</a></td>
                             <td><a onclick="ordenarTabla('GA',ligaElegida);">G</td>
@@ -481,9 +496,14 @@ function mostrarTabla(ligaElegida){
                             <td><a onclick="ordenarTabla('PT',ligaElegida);">Pts</td>
                         </tr>
                           `)
-      for (equipo of ligaActual){
+      for ([puesto, equipo] of ligaActual.entries()){
+        puesto++;
+        let clubID = ligaElegida + equipo.id;
+        let divClub = '#' + clubID;
+
         $(divLigaElegida).append(`
-                            <tr>
+                            <tr id=${clubID}>
+                              <td class="nPosicion">${equipo.ranking}</td>
                               <td class="clubName"><span class="logosTabla mx-3"><img src=${equipo.logo}></img></span>${equipo.nombre}</td>
                               <td>${equipo.partidosJugados}</td>
                               <td>${equipo.partidosGanados}</td>
@@ -492,8 +512,61 @@ function mostrarTabla(ligaElegida){
                               <td>${equipo.puntos}</td>
                             </tr>
                               `);
+        if(ordenPT){
+          if(puesto <= 4){
+            $(divClub).css("backgroundColor", '#4285F45d');
+          }
+          else if(puesto === 5){
+            $(divClub).css("backgroundColor", '#FA7B175d');
+          }
+          else if(puesto > ligaActual.length-3){
+            $(divClub).css("backgroundColor", '#EA43355d');
+          }
+          else if((ligaElegida === 'laLigaEquipos' || ligaElegida === 'serieAequipos')  && puesto === 6){
+            $(divClub).css("backgroundColor", '#34A8535d');
+          }
+        }
       }
     }
+    $("#leyenda").html("");
+    $("#leyenda").append(`
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 championsLeague"></div>
+                              <div class="col-11">
+                                Clasifica a UEFA Champions League
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 europaLeague"></div>
+                              <div class="col-11">
+                              Clasifica a UEFA Europa League
+                              </div>
+                            </div>
+                          </div>
+                            `);
+    if(ligaElegida === 'laLigaEquipos' || ligaElegida === 'serieAequipos'){
+      $("#leyenda").append(`
+                            <div class="col-12">
+                              <div class="row">
+                                <div class="col-1 conferenceLeague"></div>
+                                <div class="col-11">
+                                  Clasifica a UEFA Conference League
+                                </div>
+                              </div>
+                            </div>`);
+    }
+    $("#leyenda").append(`
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 descenso"></div>
+                              <div class="col-11">
+                                Descenso directo
+                              </div>
+                            </div>
+                          </div>`);
   }
   }
 
@@ -575,9 +648,10 @@ $("#bundesligaTab").click(()=>{
 });
 
 if (premierEquipos.length != 0){
-  tablaPts = calcularPosicion(premierEquipos);
+  tablaPts = calcularPosicion('premierEquipos');
   for (equipo of tablaPts){
     let ranking = tablaPts.findIndex( ele => ele.id == equipo.id ) + 1;
+    equipo.ranking = ranking;
     let nombreModal = 'modalp' + equipo.id;
     let containModal = 'containp' + equipo.id;
     let idContainModal = '#' + containModal;
@@ -627,9 +701,10 @@ else{
 }
 
 if (laLigaEquipos.length != 0){
-  tablaPts = calcularPosicion(laLigaEquipos);
+  tablaPts = calcularPosicion('laLigaEquipos');
   for (equipo of tablaPts){
     let ranking = tablaPts.findIndex( ele => ele.id == equipo.id ) + 1;
+    equipo.ranking = ranking;
     let nombreModal = 'modall' + equipo.id;
     let containModal = 'containl' + equipo.id;
     let idContainModal = '#' + containModal;
@@ -679,9 +754,10 @@ else{
 }
 
 if (serieAequipos.length != 0){
-  tablaPts = calcularPosicion(serieAequipos);
+  tablaPts = calcularPosicion('serieAequipos');
   for (equipo of tablaPts){
     let ranking = tablaPts.findIndex( ele => ele.id == equipo.id ) + 1;
+    equipo.ranking = ranking;
     let nombreModal = 'modals' + equipo.id;
     let containModal = 'contains' + equipo.id;
     let idContainModal = '#' + containModal;
@@ -731,9 +807,10 @@ else{
 }
 
 if (bundesEquipos.length != 0){
-  tablaPts = calcularPosicion(bundesEquipos);
+  tablaPts = calcularPosicion('bundesEquipos');
   for (equipo of tablaPts){
     let ranking = tablaPts.findIndex( ele => ele.id == equipo.id ) + 1;
+    equipo.ranking = ranking;
     let nombreModal = 'modalb' + equipo.id;
     let containModal = 'containb' + equipo.id;
     let idContainModal = '#' + containModal;
@@ -792,7 +869,7 @@ function getRandomImage(imgAr, path) {
 }
 
 function calcularPosicion(liga){
-  ordenPuntos = liga;
+  ordenPuntos = window[liga];
   ordenPuntos.sort(function(a,b){
     if (a.puntos>b.puntos){
         return -1;
@@ -808,4 +885,11 @@ function calcularPosicion(liga){
     }
     });
     return ordenPuntos;
+}
+
+function posicionClub(){
+  tablaOrdenada = calcularPosicion(ligaElegida);
+  for(equipo of tablaOrdenada){
+
+  }
 }

@@ -1,0 +1,9 @@
+
+.btn-pink{
+    background-color: $color-secundario;
+    color: $white;
+    &:hover {
+        background-color:#da3484;
+        color: $white;
+    }
+}

@@ -1,0 +1,58 @@
+#MiCarousel{
+    margin-top: 30px;
+    margin-bottom: 5%;
+    background-color: #37003a7c;
+    color: #fff;
+    box-shadow: 0px 1px 30px 3px rgba(0,0,0,0.5);
+}
+.carousel-img{
+    background-color: #000;
+    color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+.div-r{
+    padding: 40px;
+}
+.div-l{
+    position: relative;
+    height: 50vh;
+
+}
+
+.carousel-title{
+    text-align: end;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.carousel-pagination{
+    background-color: $white !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 100%;
+    position: relative;
+    bottom: -60px;
+    opacity: 0.5;
+}
+
+.carousel-pagination.active{
+    opacity: 1;   
+}
+
+.carousel-controls{
+    display: none;
+}
+
+.carousel-inner{
+    height: 50vh;
+}

@@ -5,6 +5,8 @@
 @import '_fonts';
 @import '_card';
 @import '_listaEquipos';
+@import '_carousel';
+@import '_buttons';
 
 
 body {
@@ -155,10 +157,10 @@ table{
 }
 
 td:nth-child(1) {
-  width: 35%;
+  width: 10%;
   }
 td:nth-child(2) {
-  width: 10%;
+  width: 40%;
   }
 td:nth-child(3) {
   width: 10%;
@@ -170,6 +172,9 @@ td:nth-child(5) {
   width: 10%;
   }
 td:nth-child(6) {
+  width: 10%;
+  }
+td:nth-child(7) {
   width: 10%;
   }
 
@@ -257,6 +262,7 @@ html {
 
 .fondoTabla {
   background-color: rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0px 1px 15px 3px rgba(0,0,0,0.3);
 }
 
 .tituloBanner {
@@ -303,6 +309,9 @@ body.swal2-shown > [aria-hidden="true"] {
   img{
     width: 10%;
   }
+  span{
+    margin: 50px;
+  }
 }
 
 
@@ -330,4 +339,25 @@ body.swal2-shown > [aria-hidden="true"] {
 
 .full-width{
   width: 100%;
+}
+
+#leyenda{
+  color: #fff;
+  margin: auto;
+}
+
+.europaLeague{
+  background-color: $europa;
+}
+
+.championsLeague{
+  background-color: $champions;
+}
+
+.conferenceLeague{
+  background-color: $conference;
+}
+
+.descenso{
+  background-color: $descenso;
 }
