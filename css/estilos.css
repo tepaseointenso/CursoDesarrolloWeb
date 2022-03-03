@@ -144,6 +144,11 @@ footer {
   text-decoration: none;
 }
 
+#listaLigas {
+  margin-top: 72px;
+  margin-bottom: 5%;
+}
+
 body {
   font-family: "IBM Plex Sans Thai Looped", sans-serif;
   position: relative;

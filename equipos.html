@@ -33,30 +33,30 @@
                 <h5 class="card-title-info">Informacion de los Equipos</h5>
                 <ul class="nav nav-tabs card-header-tabs justify-content-center" data-bs-tabs="tabs">
                     <li class="nav-item-teams">
-                        <a class="nav-link-teams active" aria-current="true" data-bs-toggle="tab" href="#premier">Premier League</a>
+                        <a onclick="ordenarTabla('PT','premierEquipos')" class="nav-link-teams" data-bs-toggle="tab" href="#premier" >Premier League</a>
                     </li>
                     <li class="nav-item-teams">
-                        <a class="nav-link-teams" data-bs-toggle="tab" href="#laliga">laLiga</a>
+                        <a onclick="calcularPosicion(ligaActual)" class="nav-link-teams" data-bs-toggle="tab" href="#laliga">laLiga</a>
                     </li>
                     <li class="nav-item-teams">
-                        <a class="nav-link-teams" data-bs-toggle="tab" href="#serieA">Serie A</a>
+                        <a onclick="ordenarTabla('PT','serieAequipos')"class="nav-link-teams" data-bs-toggle="tab" href="#serieA">Serie A</a>
                     </li>
                     <li class="nav-item-teams">
-                        <a class="nav-link-teams" data-bs-toggle="tab" href="#bundesliga">Bundesliga</a>
+                        <a onclick="ordenarTabla('PT','bundesEquipos')"class="nav-link-teams" data-bs-toggle="tab" href="#bundesliga">Bundesliga</a>
                     </li>
                 </ul>
             </div>
             <form class="card-body tab-content">
-                <div class="tab-pane active" id="premier">
+                <div class="tab-pane fade active show" id="premier">
                     <div class="list-group-premier row"></div>
                 </div>
-                <div class="tab-pane" id="laliga">
+                <div class="tab-pane fade" id="laliga">
                     <div class="list-group-liga row"></div>
                 </div>
-                <div class="tab-pane" id="serieA">
+                <div class="tab-pane fade" id="serieA">
                     <div class="list-group-serieA row"></div>
                 </div>
-                <div class="tab-pane" id="bundesliga">
+                <div class="tab-pane fade" id="bundesliga">
                     <div class="list-group-bundes row"></div>
                 </div>
             </form>
