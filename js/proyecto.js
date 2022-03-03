@@ -1,19 +1,19 @@
-fetch("/js/laliga.json")
+fetch("/database/laliga.json")
   .then(response => response.json())
   .then(parsed_data => {
     baseDatosLiga = parsed_data;
   });
-fetch("/js/premier.json")
+fetch("/database/premier.json")
   .then(response => response.json())
   .then(parsed_data => {
     baseDatosPremier = parsed_data;
   });
-fetch("/js/serieA.json")
+fetch("/database/serieA.json")
   .then(response => response.json())
   .then(parsed_data => {
     baseDatosSerieA = parsed_data;
 });
-fetch("/js/bundes.json")
+fetch("/database/bundes.json")
   .then(response => response.json())
   .then(parsed_data => {
     baseDatosBundes = parsed_data;
@@ -32,6 +32,7 @@ let ordenGA = false;
 let ordenEM = false;
 let ordenPE = false;
 let ordenPT = true;
+let ranking = 0;
 let ligaElegida = 'premierEquipos';
 let ligaActual = [];
 let divLigaElegida = "#" + ligaElegida;
@@ -44,6 +45,7 @@ arrayImg[1] = "derrota.png";
 arrayImg[2] = "empate.png";
 
 const visitado = localStorage.getItem("primeraVisita");
+
 
 
 if(!visitado){
@@ -121,7 +123,6 @@ else{
   var equipos = localStorage.getObj("bundesEquipos");
   var bundesEquipos = Object.values(equipos);
 }
-
 
 class Equipo {
   constructor(id,logo,nombre,pais,ciudad,estadio,partidosGanados,partidosEmpatados,partidosPerdidos,ranking) {
@@ -280,6 +281,8 @@ function clearAll(){
 
 }
 
+
+window.onload = orden();
 window.onload = mostrarTabla(ligaElegida);
 
 function ordenarTabla(filtro,ligaElegida){
@@ -454,7 +457,7 @@ function ordenarTabla(filtro,ligaElegida){
                     return 1;
                   }
                 }
-                else if (a.partidosGanados>b.partidosGanados){
+                else if (a.partidosGanados<b.partidosGanados){
                   if (ordenPT == true){
                     return -1;
                   }
@@ -496,8 +499,7 @@ function mostrarTabla(ligaElegida){
                             <td><a onclick="ordenarTabla('PT',ligaElegida);">Pts</td>
                         </tr>
                           `)
-      for ([puesto, equipo] of ligaActual.entries()){
-        puesto++;
+      for (equipo of ligaActual){
         let clubID = ligaElegida + equipo.id;
         let divClub = '#' + clubID;
 
@@ -513,16 +515,16 @@ function mostrarTabla(ligaElegida){
                             </tr>
                               `);
         if(ordenPT){
-          if(puesto <= 4){
+          if(equipo.ranking <= 4){
             $(divClub).css("backgroundColor", '#4285F45d');
           }
-          else if(puesto === 5){
+          else if(equipo.ranking === 5){
             $(divClub).css("backgroundColor", '#FA7B175d');
           }
-          else if(puesto > ligaActual.length-3){
+          else if(equipo.ranking > ligaActual.length-3){
             $(divClub).css("backgroundColor", '#EA43355d');
           }
-          else if((ligaElegida === 'laLigaEquipos' || ligaElegida === 'serieAequipos')  && puesto === 6){
+          else if((ligaElegida === 'laLigaEquipos' || ligaElegida === 'serieAequipos')  && equipo.ranking === 6){
             $(divClub).css("backgroundColor", '#34A8535d');
           }
         }
@@ -546,19 +548,6 @@ function mostrarTabla(ligaElegida){
                               </div>
                             </div>
                           </div>
-                            `);
-    if(ligaElegida === 'laLigaEquipos' || ligaElegida === 'serieAequipos'){
-      $("#leyenda").append(`
-                            <div class="col-12">
-                              <div class="row">
-                                <div class="col-1 conferenceLeague"></div>
-                                <div class="col-11">
-                                  Clasifica a UEFA Conference League
-                                </div>
-                              </div>
-                            </div>`);
-    }
-    $("#leyenda").append(`
                           <div class="col-12">
                             <div class="row">
                               <div class="col-1 descenso"></div>
@@ -887,9 +876,10 @@ function calcularPosicion(liga){
     return ordenPuntos;
 }
 
-function posicionClub(){
-  tablaOrdenada = calcularPosicion(ligaElegida);
-  for(equipo of tablaOrdenada){
-
+function orden(){
+  ligaActual = calcularPosicion(ligaElegida);
+  for (equipo of ligaActual){
+    let ranking = ligaActual.findIndex( ele => ele.id == equipo.id ) + 1;
+    equipo.ranking = ranking;
   }
 }
