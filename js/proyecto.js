@@ -1,4 +1,3 @@
-
 fetch("/js/laliga.json")
   .then(response => response.json())
   .then(parsed_data => {
@@ -44,6 +43,49 @@ arrayImg[0] = "victoria.png";
 arrayImg[1] = "derrota.png";
 arrayImg[2] = "empate.png";
 
+const visitado = localStorage.getItem("primeraVisita");
+
+
+if(!visitado){
+  if((localStorage.getObj("premierEquipos") === null) && (localStorage.getObj("laLigaEquipos") === null) && (localStorage.getObj("serieAequipos") === null) && (localStorage.getObj("bundesEquipos") === null)){
+    Swal.fire({
+      title: '¡Bienvenido!',
+      text: "Hemos detectado que no existe ninguna base de datos. ¿Deseas cargar la base de datos por defecto? [RECOMENDADO]",
+      icon: 'info',
+      color: 'white',
+      showCancelButton: true,
+      background: '#37003A',
+      confirmButtonColor: '#FF57A8',
+      cancelButtonColor: '#FF57A8',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        laLigaEquipos = baseDatosLiga;
+        premierEquipos = baseDatosPremier;
+        serieAequipos = baseDatosSerieA;
+        bundesEquipos = baseDatosBundes;
+        localStorage.setObj("laLigaEquipos", laLigaEquipos);
+        localStorage.setObj("premierEquipos", premierEquipos);
+        localStorage.setObj("serieAequipos", serieAequipos);
+        localStorage.setObj("bundesEquipos", bundesEquipos);
+        localStorage.setItem("primeraVisita", false);
+        Swal.fire({
+          background: '#37003A',
+          color: 'white',
+          title: 'Base de datos restablecida!',
+          text: 'La base de datos se ha restablecido correctamente',
+          icon: 'success',
+          confirmButtonText: 'Listo',
+          confirmButtonColor: '#FF57A8'
+        })
+      }
+      else{
+        localStorage.setItem("primeraVisita", false);
+      }
+    })
+  }
+}
 
 if(localStorage.getObj("premierEquipos") === null){
   var premierEquipos = [];
@@ -96,7 +138,10 @@ class Equipo {
 $("#agregarEquipo").submit(crearEquipo);
 
 $(".añadirEquipo").click(() => {
-    document.location.href = 'equipos.html';
+    document.location.href = 'equipos.html#containerEquipo';
+  }); 
+$(".verFooter").click(() => {
+    document.location.href = '#footer';
   }); 
 
 $(".btnForm").click(() => {
@@ -157,6 +202,7 @@ Swal.fire({
     clearInterval(timerInterval)
   }
 }).then((result) => {
+  location.reload();
   if (result.dismiss === Swal.DismissReason.timer) {
   }
 })
@@ -188,7 +234,7 @@ function clearTeams(){
       }).then((result) => {
         if (result.isConfirmed){
           mostrarTabla(ligaElegida);
-          divLigaElegida.reload();
+          location.reload();
         }
       })
     }
@@ -457,7 +503,7 @@ $("#baseDatos").click(() => {
 $(".btnClear").click(() => {
   clearTeams();
 });
-$(".btnClearAll").click(() => {
+$("#btnClearAll").click(() => {
   clearAll();
 });
 
@@ -484,6 +530,7 @@ function loadBD(){
       localStorage.setObj("premierEquipos", premierEquipos);
       localStorage.setObj("serieAequipos", serieAequipos);
       localStorage.setObj("bundesEquipos", bundesEquipos);
+      localStorage.setItem("primeraVisita", false);
       Swal.fire({
         background: '#37003A',
         color: 'white',
