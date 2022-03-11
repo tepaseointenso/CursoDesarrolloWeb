@@ -168,9 +168,6 @@ $(".btnForm").click(() => {
   $("#agregarEquipo")[0].reset();
 });
 
-if($("#logoEquipo").length === 0){
-  $("#logoEquipo").val('/assets/placeholder.png');
-}
 
 
 function crearEquipo(e){
@@ -214,6 +211,11 @@ function crearEquipo(e){
     pais = $("#nombreNuevaLiga").val();
   }
 
+  if($("#logoEquipo").val().length === 0){
+    $("#logoEquipo").val('/assets/placeholder.png');
+  }
+
+  ligaElegida = liga;
   idEquipo = ligaActual.length + 1;
   
   let nuevoEquipo = new Equipo(
@@ -228,6 +230,7 @@ function crearEquipo(e){
     $("#perdidos").val()
     );
     ligaActual.push(nuevoEquipo);
+    console.log(`Se agrego ${nuevoEquipo.nombre} a la liga ${ligaActual}`);
     $("#agregarEquipo")[0].reset();
   ordenPT = false;
   ordenarTabla("PT", ligaElegida);
@@ -242,15 +245,6 @@ function confirmation(){
 Swal.fire({
   title: 'El equipo se agregó correctamente',
   timer: 2000,
-  didOpen: () => {
-    const b = Swal.getHtmlContainer().querySelector('b')
-    timerInterval = setInterval(() => {
-      b.textContent = Swal.getTimerLeft()
-    }, 100)
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
-  }
 }).then((result) => {
   location.reload();
   if (result.dismiss === Swal.DismissReason.timer) {
