@@ -18,7 +18,7 @@ fetch("/database/bundes.json")
   .then(parsed_data => {
     baseDatosBundes = parsed_data;
 });
-
+ // there was also a ) missing here
 Storage.prototype.setObj = function(key,obj){
   return this.setItem(key, JSON.stringify(obj))
 }
@@ -73,6 +73,7 @@ if(!visitado){
         localStorage.setObj("bundesEquipos", bundesEquipos);
         localStorage.setObj("todasLigas", todasLigas);
         localStorage.setItem("primeraVisita", false);
+        calcularPosicion();
         Swal.fire({
           background: '#37003A',
           color: 'white',
@@ -136,6 +137,7 @@ else{
 if (localStorage.getItem("todasLigas")){
   calcularPosicion();
   mostrarModalesLigas();
+  llenarSelect();
 }
 
 class Equipo {
@@ -195,6 +197,7 @@ function crearEquipo(e){
   }
   else if ($("#pais").val() == 'nuevaLiga'){
     ligaElegida = $("#nombreNuevaLiga").val();
+    ligaSinEspacios = ligaElegida.replace(/\s/g, '');
     ligas = localStorage.getObj("todasLigas");
     todasLigas = Object.values(ligas);
     if(!todasLigas.includes(ligaElegida)){
@@ -202,6 +205,8 @@ function crearEquipo(e){
       localStorage.setObj('todasLigas', todasLigas);
       ligaActual = window[ligaElegida];
       ligaActual = [];
+      pais = ligaElegida;
+      localStorage.setObj(ligaElegida, ligaActual);
     }
     else{
       equiposLiga = localStorage.getObj(ligaElegida);
@@ -214,8 +219,6 @@ function crearEquipo(e){
   if($("#logoEquipo").val().length === 0){
     $("#logoEquipo").val('/assets/placeholder.png');
   }
-
-  ligaElegida = liga;
   idEquipo = ligaActual.length + 1;
   
   let nuevoEquipo = new Equipo(
@@ -230,11 +233,12 @@ function crearEquipo(e){
     $("#perdidos").val()
     );
     ligaActual.push(nuevoEquipo);
-    console.log(`Se agrego ${nuevoEquipo.nombre} a la liga ${ligaActual}`);
     $("#agregarEquipo")[0].reset();
   ordenPT = false;
   ordenarTabla("PT", ligaElegida);
+  console.log(`SE AGREGA ${ligaElegida} - ${ligaActual}`);
   localStorage.setObj(ligaElegida, ligaActual);
+
   confirmation();
 }
 
@@ -268,6 +272,11 @@ function clearTeams(){
     if (result.isConfirmed) {
       ligaActual = [];
       localStorage.removeItem(ligaElegida);
+      ligasName = localStorage.getObj("todasLigas");
+      todasLigas = Object.values(ligasName);
+      let indice = todasLigas.indexOf(ligaElegida);
+      todasLigas.splice(indice,1);
+      localStorage.setObj("todasLigas", todasLigas);
       Swal.fire({
         background: '#37003A',
         color: 'white',
@@ -317,6 +326,7 @@ function clearAll(){
 }
 
 
+window.onload = calcularPosicion();
 window.onload = mostrarTabla(ligaElegida);
 
 
@@ -727,13 +737,29 @@ function mostrarModalesLigas(){
   if(localStorage.getItem("todasLigas")){
     todasLigas = localStorage.getObj("todasLigas");
     for (nombreLiga of todasLigas){
-      noDuplicateId = nombreLiga + "tab";
+      nombreLigaNoSpace = nombreLiga.replace(/\s/g, '');
+      if(nombreLiga == "laLigaEquipos"){
+        tituloTab = 'laLiga BBVA';
+      }
+      else if (nombreLiga == "premierEquipos"){
+        tituloTab = 'Premier League';
+      }
+      else if (nombreLiga == "serieAequipos"){
+        tituloTab = "Serie A";
+      }
+      else if (nombreLiga == "bundesEquipos"){
+        tituloTab = "Bundesliga";
+      }
+      else{
+        tituloTab = nombreLiga;
+      }
+      noDuplicateId = nombreLigaNoSpace + "tab";
       idRefLiga = "#" + noDuplicateId;
       $("#tabsLigas").append(`<li class="nav-item-teams">
-                                <a class="nav-link-teams" data-bs-toggle="tab" href="${idRefLiga}" >${nombreLiga}</a>
+                                <a class="nav-link-teams" data-bs-toggle="tab" href="${idRefLiga}" >${tituloTab}</a>
                               </li>`);
-      divInfoEquipo = `list-group-${nombreLiga}`;
-      classInfoEquipo = ".list-group-" + nombreLiga;
+      divInfoEquipo = `list-group-${nombreLigaNoSpace}`;
+      classInfoEquipo = ".list-group-" + nombreLigaNoSpace;
       row = divInfoEquipo + " row";
       $("#bodyTabsLigas").append(`
                               <div class="tab-pane fade" id=${noDuplicateId}>
@@ -886,4 +912,26 @@ function ordenPuntos(liga){
       });
       ordenPT = true;
       return ligaActual;
+    }
+
+    function llenarSelect(){
+      
+    $.each(todasLigas, function(val, text) {
+      textNoSpace = text.replace(/\s/g, '');
+      if(text === "premierEquipos"){
+        $('#pais').append( $('<option></option>').val("premierEquipos").html("Premier League (Inglaterra)"));
+      }
+      else if (text === "serieAequipos"){
+        $('#pais').append( $('<option></option>').val("serieAequipos").html("Serie A (Italia)"));
+      }
+      else if (text === "laLigaEquipos"){
+        $('#pais').append( $('<option></option>').val("laLigaEquipos").html("laLiga (España)"));
+      }
+      else if (text === "bundesEquipos"){
+        $('#pais').append( $('<option></option>').val("bundesEquipos").html("Bundesliga (Alemania)"));
+      }
+      else $('#pais').append( $('<option></option>').val(textNoSpace).html(text));
+      })
+      $('#pais').append( $('<option></option>').val("nuevaLiga").html("Crear nueva liga"));
+
     }
