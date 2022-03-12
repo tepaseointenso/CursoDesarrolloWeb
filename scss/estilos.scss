@@ -27,6 +27,10 @@ body {
   max-width: 250px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .contain {
   min-width: 500px;
   max-width: 80vw;
@@ -134,6 +138,9 @@ button:hover, button:focus {
 table{
   table-layout:fixed;
   width: 100%;
+  color: #fff;
+  text-align: center;
+  margin: auto;
 }
 
 #mensaje, #confirmation {
@@ -287,11 +294,6 @@ html {
   background-image: url("/assets/premier-icon.png") 10px 10px no-repeat;
 }
 
-#premierEquipos, #laLigaEquipos, #serieAequipos, #bundesEquipos{
-  color: #fff;
-  text-align: center;
-  margin: auto;
-}
 
 body.swal2-shown > [aria-hidden="true"] {
   transition: 0.2s filter;
@@ -360,4 +362,8 @@ body.swal2-shown > [aria-hidden="true"] {
 
 .descenso{
   background-color: $descenso;
+}
+
+#infoEquipos{
+  margin-top: 72px;
 }

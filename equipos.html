@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <div class="row">
+    <div id="infoEquipos" class="row">
         <div class="card fondoTabla blanco">
             <div class="card-header">
                 <h5 class="card-title-info">Informacion de los Equipos</h5>
@@ -51,7 +51,7 @@
                         <div class="col-lg-6 col-md-12">
                             <p>
                             <label for="">Logo del equipo (URL de .png)</label>
-                            <input type="text" placeholder="Opcional [EN PRUEBAS]" id="logoEquipo"/>
+                            <input type="text" placeholder="Opcional" id="logoEquipo"/>
                             </p>
                         </div>
                         <div id="ligaOpcional" class="col-lg-6 col-md-12"></div>
@@ -67,11 +67,6 @@
                             <p>
                                 <label for="">Pais</label>
                                 <select name="pais" id="pais" required>
-                                    <!-- <option value="inglaterra">Inglaterra (Premier League)</option>
-                                    <option value="españa">España (laLiga)</option>
-                                    <option value="italia">Italia (Serie A)</option>
-                                    <option value="alemania">Alemania (Bundesliga)</option>
-                                    <option value="nuevaLiga">Crear nueva liga</option> -->
                                 </select>
                             </p>
                         </div>
@@ -105,7 +100,6 @@
                         </div>
                         <div class="col-lg-4">
                             <p>
-                                <!-- onkeypress="return event.charCode >= 48" min="0" step="1" -->
                                 <label for="perdidos">Partidos perdidos</label>
                                 <input id="perdidos" type="number"  required>
                             </p>

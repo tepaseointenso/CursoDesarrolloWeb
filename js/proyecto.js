@@ -18,7 +18,7 @@ fetch("/database/bundes.json")
   .then(parsed_data => {
     baseDatosBundes = parsed_data;
 });
- // there was also a ) missing here
+
 Storage.prototype.setObj = function(key,obj){
   return this.setItem(key, JSON.stringify(obj))
 }
@@ -37,6 +37,7 @@ let ligaElegida = 'premierEquipos';
 let todasLigas = [];
 let ligaActual = [];
 let divLigaElegida = "#" + ligaElegida;
+
 
 let totalEquipos = 0;
 
@@ -135,9 +136,18 @@ else{
 }
 
 if (localStorage.getItem("todasLigas")){
+  for (liga of todasLigas){
+    if (!window[liga]){
+      window[liga] = [];
+    }
+  }
   calcularPosicion();
   mostrarModalesLigas();
   llenarSelect();
+  llenarTabsClasificacion();
+  tabsClasificacion();
+  llenarContenidoClasificacion();
+
 }
 
 class Equipo {
@@ -174,52 +184,37 @@ $(".btnForm").click(() => {
 
 function crearEquipo(e){
   e.preventDefault();
-  if ($("#pais").val() == 'españa'){
-    liga = 'laLigaEquipos';
-    ligaActual = window[liga];
-    pais = $("#pais").val();
-  }
-  else if ($("#pais").val() == 'inglaterra'){
-    liga = 'premierEquipos';
-    ligaActual = window[liga];
-    pais = $("#pais").val();
-  }
-  else if ($("#pais").val() == 'italia'){
-    liga = 'serieAequipos';
-    ligaActual = window[liga];
-    pais = $("#pais").val();
-  }
-  else if ($("#pais").val() == 'alemania'){
-    liga = 'bundesEquipos';
-    ligaActual = window[liga];
-    pais = $("#pais").val();
-    
-  }
-  else if ($("#pais").val() == 'nuevaLiga'){
-    ligaElegida = $("#nombreNuevaLiga").val();
-    ligaSinEspacios = ligaElegida.replace(/\s/g, '');
+  if ($("#pais").val() == 'nuevaLiga'){
+    ligaElegida = $("#nombreNuevaLiga").val().toLowerCase();
+    ligaElegida = ligaElegida.replace(/\s/g, '');
     ligas = localStorage.getObj("todasLigas");
     todasLigas = Object.values(ligas);
+
     if(!todasLigas.includes(ligaElegida)){
       todasLigas.push(ligaElegida);
       localStorage.setObj('todasLigas', todasLigas);
-      ligaActual = window[ligaElegida];
       ligaActual = [];
-      pais = ligaElegida;
-      localStorage.setObj(ligaElegida, ligaActual);
     }
     else{
-      equiposLiga = localStorage.getObj(ligaElegida);
-      ligaActual = Object.values(equiposLiga);
-
+      alert("Esta liga ya existe, seleccionela en la lista.");
     }
-    pais = $("#nombreNuevaLiga").val();
   }
+  else{
+    ligaElegida = $("#pais").val();
+    equipos = localStorage.getObj(ligaElegida);
+    ligaActual = Object.values(equipos);
+  }
+
+  pais = ligaElegida;
+  
 
   if($("#logoEquipo").val().length === 0){
     $("#logoEquipo").val('/assets/placeholder.png');
   }
+
+
   idEquipo = ligaActual.length + 1;
+
   
   let nuevoEquipo = new Equipo(
     idEquipo,
@@ -232,14 +227,16 @@ function crearEquipo(e){
     $("#empatados").val(),
     $("#perdidos").val()
     );
-    ligaActual.push(nuevoEquipo);
-    $("#agregarEquipo")[0].reset();
-  ordenPT = false;
-  ordenarTabla("PT", ligaElegida);
-  console.log(`SE AGREGA ${ligaElegida} - ${ligaActual}`);
+
+  $("#agregarEquipo")[0].reset();
+
+  ligaActual.push(nuevoEquipo);
   localStorage.setObj(ligaElegida, ligaActual);
+  ordenarTabla("PT", ligaElegida);
+  ordenPT = false;
 
   confirmation();
+  
 }
 
 $("#agregarEquipo").submit(crearEquipo);
@@ -331,8 +328,11 @@ window.onload = mostrarTabla(ligaElegida);
 
 
 function ordenarTabla(filtro,ligaElegida){
+ 
+
   if (ligaActual.length != 1){
-  ligaActual = window[ligaElegida];
+    equipos = localStorage.getObj(ligaElegida);
+    ligaActual = Object.values(equipos);
   if (filtro === "Club"){
     ordenPT = false;
     if (ordenClub == true){
@@ -563,7 +563,7 @@ function ordenarTabla(filtro,ligaElegida){
 
 function mostrarTabla(ligaElegida){
   divLigaElegida = "#" + ligaElegida;
-  ligaActual = window[ligaElegida];
+  ligaActual = localStorage.getObj(ligaElegida);
   if ($(divLigaElegida).ready()){
     if (ligaActual.length === 0){
       $(divLigaElegida).html("");
@@ -613,32 +613,6 @@ function mostrarTabla(ligaElegida){
         }
       }
     }
-    $("#leyenda").html("");
-    $("#leyenda").append(`
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-1 championsLeague"></div>
-                              <div class="col-11">
-                                Clasifica a UEFA Champions League
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-1 europaLeague"></div>
-                              <div class="col-11">
-                              Clasifica a UEFA Europa League
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <div class="row">
-                              <div class="col-1 descenso"></div>
-                              <div class="col-11">
-                                Descenso directo
-                              </div>
-                            </div>
-                          </div>`);
   }
   }
 
@@ -700,26 +674,7 @@ function loadBD(){
 }
 
 
-$("#premierLeagueTab").click(()=>{
-  ligaElegida = 'premierEquipos';
-  localStorage.setItem('pais','inglaterra');
-  mostrarTabla(ligaElegida);
-});
-$("#laLigaTab").click(()=>{
-  ligaElegida = 'laLigaEquipos';
-  localStorage.setItem('pais','españa');
-  mostrarTabla(ligaElegida);
-});
-$("#serieAtab").click(()=>{
-  ligaElegida = 'serieAequipos';
-  localStorage.setItem('pais','italia');
-  mostrarTabla(ligaElegida);
-});
-$("#bundesligaTab").click(()=>{
-  ligaElegida = 'bundesEquipos';
-  localStorage.setItem('pais','alemania');
-  mostrarTabla(ligaElegida);
-});
+
 
 $("#pais").change(() =>{
   if($("#pais").val() === 'nuevaLiga'){
@@ -729,14 +684,17 @@ $("#pais").change(() =>{
                                 <input type="text" placeholder="Ingresa el nombre de la liga" id="nombreNuevaLiga"/>
                                 </p>`)
   }
+  else{
+    $("#ligaOpcional").html("");
+  }
 })
 
 
 
 function mostrarModalesLigas(){
   if(localStorage.getItem("todasLigas")){
-    todasLigas = localStorage.getObj("todasLigas");
-    for (nombreLiga of todasLigas){
+    ligas = localStorage.getObj("todasLigas");
+    for (nombreLiga of ligas){
       nombreLigaNoSpace = nombreLiga.replace(/\s/g, '');
       if(nombreLiga == "laLigaEquipos"){
         tituloTab = 'laLiga BBVA';
@@ -766,7 +724,7 @@ function mostrarModalesLigas(){
                                 <div id="listadoEquipos" class="${row}"></div>
                               </div>`);                       
 
-      liga = localStorage.getObj(nombreLiga);
+      liga = localStorage.getObj(nombreLigaNoSpace);
       ligaActual = Object.values(liga);
       if (ligaActual.length != 0){
         for (equipo of ligaActual){
@@ -835,10 +793,9 @@ function getRandomImage(imgAr, path) {
 function calcularPosicion(){
   ligas = localStorage.getObj("todasLigas");
   todasLigas = Object.values(ligas);
-
   for (liga of todasLigas){
-    ligaLocal = localStorage.getObj(liga);
-    ligaActual = Object.values(ligaLocal);
+    equipos = localStorage.getObj(liga);
+    ligaActual = Object.values(equipos);
     ordenPuntos(ligaActual);
     for (equipo of ligaActual){
       let ranking = ligaActual.findIndex( ele => ele.id == equipo.id ) + 1;
@@ -914,24 +871,125 @@ function ordenPuntos(liga){
       return ligaActual;
     }
 
-    function llenarSelect(){
-      
-    $.each(todasLigas, function(val, text) {
-      textNoSpace = text.replace(/\s/g, '');
-      if(text === "premierEquipos"){
-        $('#pais').append( $('<option></option>').val("premierEquipos").html("Premier League (Inglaterra)"));
-      }
-      else if (text === "serieAequipos"){
-        $('#pais').append( $('<option></option>').val("serieAequipos").html("Serie A (Italia)"));
-      }
-      else if (text === "laLigaEquipos"){
-        $('#pais').append( $('<option></option>').val("laLigaEquipos").html("laLiga (España)"));
-      }
-      else if (text === "bundesEquipos"){
-        $('#pais').append( $('<option></option>').val("bundesEquipos").html("Bundesliga (Alemania)"));
-      }
-      else $('#pais').append( $('<option></option>').val(textNoSpace).html(text));
-      })
-      $('#pais').append( $('<option></option>').val("nuevaLiga").html("Crear nueva liga"));
+function llenarSelect(){
+  
+$.each(todasLigas, function(val, text) {
+  textNoSpace = text.replace(/\s/g, '');
+  if(text === "premierEquipos"){
+    $('#pais').append( $('<option></option>').val("premierEquipos").html("Premier League (Inglaterra)"));
+  }
+  else if (text === "serieAequipos"){
+    $('#pais').append( $('<option></option>').val("serieAequipos").html("Serie A (Italia)"));
+  }
+  else if (text === "laLigaEquipos"){
+    $('#pais').append( $('<option></option>').val("laLigaEquipos").html("laLiga (España)"));
+  }
+  else if (text === "bundesEquipos"){
+    $('#pais').append( $('<option></option>').val("bundesEquipos").html("Bundesliga (Alemania)"));
+  }
+  else $('#pais').append( $('<option></option>').val(textNoSpace).html(text));
+  })
+  $('#pais').append( $('<option></option>').val("nuevaLiga").html("Crear nueva liga"));
+}
 
+
+function llenarTabsClasificacion(){
+  $('#v-pills-tab').empty();      
+  $.each(todasLigas, function(val, text) {
+    textNoSpace = text.replace(/\s/g, '');
+    idTab = "#tab" + textNoSpace;
+    tituloTab = textNoSpace + "Tab";
+    tituloNuevaLiga = text.replace('Equipos', '');
+    if(text === "premierEquipos"){
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">Premier League</button>`));
     }
+    else if(text === "serieAequipos"){
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">Serie A</button>`));
+    }
+    else if(text === "laLigaEquipos"){
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">laLiga</button>`));
+    }
+    else if(text === "bundesEquipos"){
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">Bundesliga</button>`));
+    }
+    else{
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">${tituloNuevaLiga}</button>`));
+    }
+    
+  });
+}
+
+function llenarContenidoClasificacion(){
+
+  $('#v-pills-tabContent').empty();      
+  $.each(todasLigas, function(val, text) {
+    textNoSpace = text.replace(/\s/g, '');
+    nameTab = "tab" + textNoSpace;
+    $('#v-pills-tabContent').append( $(`<div class="tab-pane fade" id=${nameTab} role="tabpanel" aria-labelledby=${nameTab}>
+                                          <table id=${textNoSpace}>
+                                          </table>
+                                        <div class="updated">ACTUALIZADO A 23 DE FEBRERO DE 2022</div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-6">
+                                                <button type="button" class="añadirEquipo full-width">Agregar nuevo equipo a esta liga</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" class="btnClear full-width full-width">Borrar liga</button>
+                                            </div>
+                                        </div>
+                                    </div>`));
+    $("#leyenda").html("");
+    $("#leyenda").append(`
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 championsLeague"></div>
+                              <div class="col-11">
+                                Clasifica a UEFA Champions League
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 europaLeague"></div>
+                              <div class="col-11">
+                              Clasifica a UEFA Europa League
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="row">
+                              <div class="col-1 descenso"></div>
+                              <div class="col-11">
+                                Descenso directo
+                              </div>
+                            </div>
+                          </div>`);
+  });
+}
+
+
+function tabsClasificacion(){
+  for (var s in todasLigas) {
+    var sector = todasLigas[s];
+    (function(liga){
+      ligaTab = liga + "Tab";
+      $("#" + ligaTab).on("click", function(e){
+        ligaElegida = liga;
+        equipos = localStorage.getObj(ligaElegida);
+        ligaActual = Object.values(equipos);
+        mostrarTabla(ligaElegida);
+      });
+    }(sector));
+  }
+}
+
+$("#ganados").keypress(validarNumero);
+$("#empatados").keypress(validarNumero);
+$("#perdidos").keypress(validarNumero);
+
+function validarNumero(e){
+    let keycode = e.which;
+    if (!(e.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+        e.preventDefault();
+    }
+  }
