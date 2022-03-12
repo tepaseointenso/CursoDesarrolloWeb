@@ -28,77 +28,71 @@
         </div>
     </nav>
     
-    <div id="containerEquipo" class="container-fluid contain">
-        <div class="row fondoTabla">
-            <div class="bannerLateral col-lg-4 px-0 py-5">
-                    <p class="tituloTeams">CONTACTA CON NOSOTROS</p>
-                    <img class="logoSide" src="/assets/logo.png" alt="Logo">
-            </div>
-            <div class="fondoForm col-lg-8 col-md-12 px-0 mt-auto mb-auto">
-                <form id="agregarEquipo" >
-                    <div class="row m-3">
-                        <div class="col-lg-6 col-md-12">
-                            <p>
-                            <label for="">Logo del equipo (URL de .png)</label>
-                            <input type="text" placeholder="Opcional" id="logoEquipo"/>
-                            </p>
-                        </div>
-                        <div id="ligaOpcional" class="col-lg-6 col-md-12"></div>
-                    </div>
-                    <div class="row m-3">
-                        <div class="col-lg-6 col-md-12">
-                            <p>
-                            <label for="">Nombre del Equipo</label>
-                            <input type="text" id="nombre" required>
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                            <p>
-                                <label for="">Pais</label>
-                                <select name="pais" id="pais" required>
-                                </select>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row m-3">
-                        <div class="col-lg-6 col-md-12">
-                            <p>
-                                <label for="">Ciudad</label>
-                                <input type="text" id="ciudad" required>
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                            <p>
-                                <label for="">Estadio</label>
-                                <input type="text" id="estadio" required>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row m-3">
-                        <div class="col-lg-4">
-                            <p>
-                                <label for="ganados">Partidos Ganados</label>
-                                <input id="ganados" type="number"  required>
-                            </p>
-                        </div>
-                        <div class="col-lg-4">
-                            <p>
-                                <label for="empatados">Partidos empatados</label>
-                                <input id="empatados" type="number" required>
-                            </p>
-                        </div>
-                        <div class="col-lg-4">
-                            <p>
-                                <label for="perdidos">Partidos perdidos</label>
-                                <input id="perdidos" type="number"  required>
-                            </p>
-                        </div>
-                    </div>
-                    </div>
-                </form>
+    <div class="container-fluid contain justify-content-center">    
+        <div class="row">
+            <div class="about col-lg-12 px-0 py-5 mb-3">
+                <p class="tituloTeams">Informacion del Proyecto</p>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#frameworksTab" type="button" role="tab" aria-controls="frameworksTab" aria-selected="true">Frameworks Utilizados</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#softwareTab" type="button" role="tab" aria-controls="softwareTab" aria-selected="false">Software Utilizado</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#infoTab" type="button" role="tab" aria-controls="infoTab" aria-selected="false">Información del Alumno</a>
+                    </li>
+                  </ul>
             </div>
         </div>
-    </div> 
+        <div class="row">
+            <div class="about col-lg-12 px-0 py-5">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="frameworksTab" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <img class="imagenes" src="/assets/info/framework.png" alt="Frameworks">
+                                    <img class="imagenes" src="/assets/info/sass.png" alt="Frameworks">
+                                    <img class="imagenes" src="/assets/info/jquery.png" alt="Frameworks">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="softwareTab" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-lg-6 text-center">
+                                <img class="imagenes" src="/assets/info/vscode.png" alt="Frameworks">
+                                <p>Visual Studio Code</p>
+                            </div>
+                            <div class="col-lg-6 text-center">
+                                <img class="imagenes" src="/assets/info/chrome.png" alt="Frameworks">
+                                <p>Google Chrome</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="infoTab" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="row">
+                            <div class="col-lg-5 div-l-contacto text-center">
+                                <div class="carousel-img perfil" style="background-image: url(/assets/info/profile.jpg);"></div>
+                            </div>
+                            <div class="col-lg-7 div-r">
+                            <h1 class="carousel-title">Eric Trasancos Palmeiro</h1>
+                                <hr>
+                                <p>Estudiante de 5to año de Ingenieria Civil Informática</p>
+                                <p>Pontificia Universidad Católica de Valparaiso</p>
+                                <p>Proyecto desarrollado para los cursos de Desarrollo Web y JavaScript en CoderHouse</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+                
+
     <footer id="footer" class="footer">
         <div class="container">
             <div class="row justify-content-center">

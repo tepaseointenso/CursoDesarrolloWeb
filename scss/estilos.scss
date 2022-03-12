@@ -7,6 +7,7 @@
 @import '_listaEquipos';
 @import '_carousel';
 @import '_buttons';
+@import '_info';
 
 
 body {
@@ -376,4 +377,47 @@ body.swal2-shown > [aria-hidden="true"] {
 
 .index{
   height: 75vh;
+}
+
+.menuInicio .menuBtn .btnRight{
+  padding: 0.5em !important;
+}
+
+.menuInicio{
+  justify-content: space-around;
+}
+
+.about{
+  @extend .bannerLateral;
+  box-shadow: 0px 1px 30px 3px rgba(0,0,0,0.5);
+}
+
+.tabsInfo{
+  @extend .menuBtn;
+  width: 25%;
+}
+
+.nav-link.active{
+  background-color: #FF57A8 !important;
+}
+.nav-link-teams.active{
+  margin: 0 !important;
+  background-color: #FF57A8 !important;
+}
+
+.nav-link{
+  padding: 6px 12px !important;
+  border-radius: 0 !important;
+}
+
+.imagenes{
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 20vh;
+  max-width:100%;
+  max-height:100%;
+}
+
+.profile{
+  height: 50vh;
 }

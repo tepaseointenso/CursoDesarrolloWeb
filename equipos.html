@@ -78,19 +78,19 @@
                         <div class="col-lg-4">
                             <p>
                                 <label for="ganados">Partidos Ganados</label>
-                                <input id="ganados" type="number"  required>
+                                <input id="ganados" type="number" min=0 oninput="validity.valid||(value='');" required>
                             </p>
                         </div>
                         <div class="col-lg-4">
                             <p>
                                 <label for="empatados">Partidos empatados</label>
-                                <input id="empatados" type="number" required>
+                                <input id="empatados" type="number" min=0 oninput="validity.valid||(value='');" required>
                             </p>
                         </div>
                         <div class="col-lg-4">
                             <p>
                                 <label for="perdidos">Partidos perdidos</label>
-                                <input id="perdidos" type="number"  required>
+                                <input id="perdidos" type="number" min=0 oninput="validity.valid||(value='');" required>
                             </p>
                         </div>
                     </div>

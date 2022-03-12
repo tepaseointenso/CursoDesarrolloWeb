@@ -103,7 +103,7 @@ footer {
   text-align: right;
 }
 
-.menuBtn {
+.menuBtn, .tabsInfo {
   width: 100%;
   position: relative;
   z-index: 1;
@@ -170,8 +170,12 @@ footer {
   z-index: 2;
 }
 
+.perfil {
+  border-radius: 50%;
+}
+
 .div-r {
-  padding: 40px;
+  padding: 5%;
 }
 
 .div-l {
@@ -179,12 +183,23 @@ footer {
   height: 35vh;
 }
 
+.div-l-contacto {
+  position: relative;
+  height: 50vh;
+}
+
 .carousel-title {
   text-align: end;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-left: 20px;
   margin-top: 20px;
+}
+
+@media screen and (min-width: 601px) {
+  div.example {
+    font-size: 80px;
+  }
 }
 
 .carousel-pagination {
@@ -217,6 +232,95 @@ footer {
 .btn-pink:hover {
   background-color: #da3484;
   color: #fff;
+}
+
+.containerProfile {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ECEFF1;
+  width: 500px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu-icon {
+  position: absolute;
+  right: 0;
+  width: 53px;
+  height: 53px;
+  -webkit-filter: invert(40%) sepia(57%) saturate(2228%) hue-rotate(189deg) brightness(96%) contrast(87%);
+          filter: invert(40%) sepia(57%) saturate(2228%) hue-rotate(189deg) brightness(96%) contrast(87%);
+}
+
+.svg-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #1E88E5;
+  -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+  clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+}
+
+.svg-background2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.12);
+  z-index: -9;
+  -webkit-clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+  clip-path: polygon(0 0, 14% 0, 48% 100%, 0% 100%);
+}
+
+.profile-img {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  margin-top: 55px;
+  margin-left: 40px;
+  border-radius: 50%;
+}
+
+.circle {
+  position: absolute;
+  width: 162px;
+  height: 161px;
+  left: 0;
+  top: 0;
+  background-color: #ECEFF1;
+  border-radius: 50%;
+  margin-top: 50.5px;
+  margin-left: 35px;
+}
+
+.text-container {
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+  margin-top: 45px;
+  max-width: 230px;
+  text-align: center;
+}
+
+.title-text {
+  color: #263238;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.info-text {
+  margin-top: 10px;
+  font-siize: 18px;
+}
+
+.desc-text {
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 body {
@@ -284,7 +388,7 @@ ul {
   padding: 0;
 }
 
-.bannerLateral {
+.bannerLateral, .about {
   background-color: #37003A;
   color: #fff;
 }
@@ -334,7 +438,7 @@ button:hover, button:focus {
   outline: 0;
 }
 
-.menuBtn:hover {
+.menuBtn:hover, .tabsInfo:hover {
   background: none;
 }
 
@@ -439,21 +543,21 @@ td:nth-child(7) {
   bottom: 0;
 }
 
-.menuBtn::before {
+.menuBtn::before, .tabsInfo::before {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
 }
 
-.menuBtn:hover::before {
+.menuBtn:hover::before, .tabsInfo:hover::before {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transform-origin: bottom left;
           transform-origin: bottom left;
 }
 
-.menuBtn::before {
+.menuBtn::before, .tabsInfo::before {
   content: " ";
   display: block;
   position: absolute;
@@ -516,7 +620,7 @@ html {
   color: #fff;
 }
 
-.menuBtn {
+.menuBtn, .tabsInfo {
   background-color: transparent;
   color: #fff;
 }
@@ -597,5 +701,49 @@ body.swal2-shown > [aria-hidden="true"] {
 
 .index {
   height: 75vh;
+}
+
+.menuInicio .menuBtn .btnRight, .menuInicio .tabsInfo .btnRight {
+  padding: 0.5em !important;
+}
+
+.menuInicio {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.about {
+  -webkit-box-shadow: 0px 1px 30px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 1px 30px 3px rgba(0, 0, 0, 0.5);
+}
+
+.tabsInfo {
+  width: 25%;
+}
+
+.nav-link.active, .active.nav-link-teams {
+  background-color: #FF57A8 !important;
+}
+
+.nav-link-teams.active {
+  margin: 0 !important;
+  background-color: #FF57A8 !important;
+}
+
+.nav-link, .nav-link-teams {
+  padding: 6px 12px !important;
+  border-radius: 0 !important;
+}
+
+.imagenes {
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 20vh;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.profile {
+  height: 50vh;
 }
 /*# sourceMappingURL=estilos.css.map */

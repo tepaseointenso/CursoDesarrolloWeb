@@ -17,23 +17,37 @@
     z-index: 2;
 }
 
+.perfil{
+    border-radius: 50%;
+}
+
 .div-r{
-    padding: 40px;
+    padding: 5%;
 }
 .div-l{
     position: relative;
     height: 35vh;
 
 }
+.div-l-contacto{
+    position: relative;
+    height: 50vh;
+
+}
 
 .carousel-title{
     text-align: end;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     margin-left: 20px;
     margin-top: 20px;
 }
 
+@media screen and (min-width: 601px) {
+    div.example {
+      font-size: 80px;
+    }
+  }
 .carousel-pagination{
     background-color: $white !important;
     width: 20px !important;

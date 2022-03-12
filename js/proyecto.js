@@ -235,22 +235,29 @@ function crearEquipo(e){
   ordenarTabla("PT", ligaElegida);
   ordenPT = false;
 
-  confirmation();
+  confirmation(nuevoEquipo.nombre, ligaElegida);
   
 }
 
 $("#agregarEquipo").submit(crearEquipo);
 
-function confirmation(){
-  let timerInterval
-Swal.fire({
-  title: 'El equipo se agregó correctamente',
-  timer: 2000,
-}).then((result) => {
-  location.reload();
-  if (result.dismiss === Swal.DismissReason.timer) {
-  }
-})
+function confirmation(nombre,liga){
+  tabLiga = "tab" + liga;
+  divTab = "#" + tabLiga;
+  Swal.fire({
+    title: '¡Equipo agregado!',
+    text: `El equipo ${nombre} fue agregado correctamente ${liga}`,
+    icon: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ver Clasificacion',
+    cancelButtonText: 'Agregar más equipos'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../clasificacion.html"; 
+     }
+  })
 }
 
 function clearTeams(){
@@ -324,7 +331,7 @@ function clearAll(){
 
 
 
-$(document).ready(function(){
+$('.nav-link-teams').ready(function(){
   $('.nav-link-teams')[0].click();
 });
 
@@ -721,7 +728,7 @@ function mostrarModalesLigas(){
       noDuplicateId = nombreLigaNoSpace + "tab";
       idRefLiga = "#" + noDuplicateId;
       $("#tabsLigas").append(`<li class="nav-item-teams">
-                                <a class="nav-link-teams menuBtn"  data-bs-toggle="tab" href="${idRefLiga}" >${tituloTab}</a>
+                                <a class="nav-link-teams"  data-bs-toggle="tab" href="${idRefLiga}" >${tituloTab}</a>
                               </li>`);
       divInfoEquipo = `list-group-${nombreLigaNoSpace}`;
       classInfoEquipo = ".list-group-" + nombreLigaNoSpace;
@@ -1020,13 +1027,3 @@ function tabsClasificacion(){
   }
 }
 
-$("#ganados").keypress(validarNumero);
-$("#empatados").keypress(validarNumero);
-$("#perdidos").keypress(validarNumero);
-
-function validarNumero(e){
-    let keycode = e.which;
-    if (!(e.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
-        e.preventDefault();
-    }
-  }
