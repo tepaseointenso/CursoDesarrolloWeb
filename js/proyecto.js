@@ -323,8 +323,15 @@ function clearAll(){
 }
 
 
-window.onload = calcularPosicion();
-window.onload = mostrarTabla(ligaElegida);
+
+$(document).ready(function(){
+  $('.nav-link-teams')[0].click();
+});
+
+$("#v-pills-tab").ready(function(){
+  $("#v-pills-tab button:first-child")[0].click();
+});
+
 
 
 function ordenarTabla(filtro,ligaElegida){
@@ -697,7 +704,7 @@ function mostrarModalesLigas(){
     for (nombreLiga of ligas){
       nombreLigaNoSpace = nombreLiga.replace(/\s/g, '');
       if(nombreLiga == "laLigaEquipos"){
-        tituloTab = 'laLiga BBVA';
+        tituloTab = 'laLiga Santander';
       }
       else if (nombreLiga == "premierEquipos"){
         tituloTab = 'Premier League';
@@ -714,7 +721,7 @@ function mostrarModalesLigas(){
       noDuplicateId = nombreLigaNoSpace + "tab";
       idRefLiga = "#" + noDuplicateId;
       $("#tabsLigas").append(`<li class="nav-item-teams">
-                                <a class="nav-link-teams" data-bs-toggle="tab" href="${idRefLiga}" >${tituloTab}</a>
+                                <a class="nav-link-teams menuBtn"  data-bs-toggle="tab" href="${idRefLiga}" >${tituloTab}</a>
                               </li>`);
       divInfoEquipo = `list-group-${nombreLigaNoSpace}`;
       classInfoEquipo = ".list-group-" + nombreLigaNoSpace;
@@ -732,10 +739,10 @@ function mostrarModalesLigas(){
           let containModal = 'contain' + nombreLiga + equipo.id;
           let idContainModal = '#' + containModal;
           $(classInfoEquipo).append(`
-              <div class="col-lg-1 col-md-2 col-sm-3" align="center">
+              <div class="col-lg-2 col-md-4 col-sm-6" align="center">
               <a href="#" data-bs-toggle="modal" data-bs-target=${idContainModal}>
               <div class="modal fade " id=${containModal} tabindex="-1" aria-labelledby=${nombreModal} aria-hidden="true">
-              <div class="modal-dialog modal-lg">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content bg-dark">
                   <div class="modal-header">
                     <h5 class="modal-title" id=${nombreModal}>${equipo.nombre}</h5>
@@ -907,7 +914,7 @@ function llenarTabsClasificacion(){
       $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">Serie A</button>`));
     }
     else if(text === "laLigaEquipos"){
-      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">laLiga</button>`));
+      $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">laLiga Santander</button>`));
     }
     else if(text === "bundesEquipos"){
       $('#v-pills-tab').append( $(`<button class="menuBtn btnRight" id=${tituloTab} data-bs-toggle="pill" data-bs-target=${idTab} type="button" role="tab" aria-controls="${textNoSpace}" aria-selected="false">Bundesliga</button>`));
@@ -928,18 +935,47 @@ function llenarContenidoClasificacion(){
     $('#v-pills-tabContent').append( $(`<div class="tab-pane fade" id=${nameTab} role="tabpanel" aria-labelledby=${nameTab}>
                                           <table id=${textNoSpace}>
                                           </table>
-                                        <div class="updated">ACTUALIZADO A 23 DE FEBRERO DE 2022</div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-6">
-                                                <button type="button" class="añadirEquipo full-width">Agregar nuevo equipo a esta liga</button>
+                                        <div id="parteInferior">
+                                          <div class="updated">ACTUALIZADO A 23 DE FEBRERO DE 2022</div>
+                                          <div id="leyenda" class="row justify-content-center mt-3 mb-3">
+                                            <div class="col-12">
+                                              <div class="row">
+                                                <div class="col-1 championsLeague"></div>
+                                                <div class="col-11">
+                                                  Clasifica a UEFA Champions League
+                                                </div>
+                                              </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <button type="button" class="btnClear full-width full-width">Borrar liga</button>
+                                            <div class="col-12">
+                                              <div class="row">
+                                                <div class="col-1 europaLeague"></div>
+                                                <div class="col-11">
+                                                Clasifica a UEFA Europa League
+                                                </div>
+                                              </div>
                                             </div>
-                                        </div>
-                                    </div>`));
+                                            <div class="col-12">
+                                              <div class="row">
+                                                <div class="col-1 descenso"></div>
+                                                <div class="col-11">
+                                                  Descenso directo
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row justify-content-center">
+                                              <div class="col-lg-6">
+                                                  <button type="button" class="añadirEquipo full-width">Agregar nuevo equipo a esta liga</button>
+                                              </div>
+                                              <div class="col-lg-6">
+                                                  <button type="button" class="btnClear full-width full-width">Borrar liga</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      </div>`));
     $("#leyenda").html("");
     $("#leyenda").append(`
+                        <div id="leyenda" class="row justify-content-center mt-3">
                           <div class="col-12">
                             <div class="row">
                               <div class="col-1 championsLeague"></div>
@@ -963,7 +999,8 @@ function llenarContenidoClasificacion(){
                                 Descenso directo
                               </div>
                             </div>
-                          </div>`);
+                          </div>
+                        </div>`);
   });
 }
 

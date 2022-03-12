@@ -1,9 +1,9 @@
 #MiCarousel{
-    margin-top: 30px;
-    margin-bottom: 5%;
     background-color: #37003a7c;
     color: #fff;
     box-shadow: 0px 1px 30px 3px rgba(0,0,0,0.5);
+    height: 75vh;
+
 }
 .carousel-img{
     background-color: #000;
@@ -15,7 +15,6 @@
     height: 100%;
     position: absolute;
     z-index: 2;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
 }
 
 .div-r{
@@ -23,7 +22,7 @@
 }
 .div-l{
     position: relative;
-    height: 50vh;
+    height: 35vh;
 
 }
 
@@ -54,5 +53,5 @@
 }
 
 .carousel-inner{
-    height: 50vh;
+    height: 100%;
 }
