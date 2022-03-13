@@ -245,12 +245,14 @@ function confirmation(nombre,liga){
   tabLiga = "tab" + liga;
   divTab = "#" + tabLiga;
   Swal.fire({
+    background: '#37003A',
+    color: 'white',
     title: '¡Equipo agregado!',
     text: `El equipo ${nombre} fue agregado correctamente ${liga}`,
     icon: 'success',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: '#FF57A8',
+    cancelButtonColor: '#FF57A8',
     confirmButtonText: 'Ver Clasificacion',
     cancelButtonText: 'Agregar más equipos'
   }).then((result) => {
@@ -942,7 +944,7 @@ function llenarContenidoClasificacion(){
                                           <table id=${textNoSpace}>
                                           </table>
                                         <div id="parteInferior">
-                                          <div class="updated">ACTUALIZADO A 23 DE FEBRERO DE 2022</div>
+                                          <div class="updated">ACTUALIZADO A 27 DE FEBRERO DE 2022</div>
                                           <div id="leyenda" class="row justify-content-center mt-3 mb-3">
                                             <div class="col-12">
                                               <div class="row">
