@@ -1,0 +1,11 @@
+@import '_variables';
+
+.modal-content{
+    background-color: $color-primario !important;
+    color: $white;
+    z-index: 2;
+}
+
+.modal-header .btn-close {
+    filter: invert(100%) sepia(5%) saturate(582%) hue-rotate(216deg) brightness(113%) contrast(100%);
+}

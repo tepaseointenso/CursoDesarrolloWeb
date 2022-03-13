@@ -287,12 +287,11 @@ function clearTeams(){
         confirmButtonColor: '#FF57A8',
         cancelButtonColor: '#FF57A8',
         title: 'Eliminado!',
-        text: `La informacion de la liga ${ligaElegida} ha sido eliminada`,
+        text: `La liga ha sido eliminada correctamente.`,
         icon: 'success'
       }).then((result) => {
         if (result.isConfirmed){
-          mostrarTabla(ligaElegida);
-          location.reload();
+          location.reload(true);
         }
       })
     }

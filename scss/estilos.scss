@@ -8,6 +8,7 @@
 @import '_carousel';
 @import '_buttons';
 @import '_info';
+@import '_modal';
 
 
 body {
@@ -346,9 +347,6 @@ body.swal2-shown > [aria-hidden="true"] {
   font-size: 2rem;
 }
 
-.modal-content{
-  color: $white;
-}
 
 .full-width{
   width: 100%;
