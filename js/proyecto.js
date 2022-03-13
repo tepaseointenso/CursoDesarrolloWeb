@@ -248,7 +248,7 @@ function confirmation(nombre,liga){
     background: '#37003A',
     color: 'white',
     title: '¡Equipo agregado!',
-    text: `El equipo ${nombre} fue agregado correctamente ${liga}`,
+    text: `El equipo ${nombre} fue agregado correctamente.`,
     icon: 'success',
     showCancelButton: true,
     confirmButtonColor: '#FF57A8',
